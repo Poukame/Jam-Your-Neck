@@ -1,5 +1,5 @@
 :root {
-	font-size: min(calc(0.7em + 1vw), 18px);
+	/* font-size: min(calc(0.7em + 1vw), 18px); */
 	box-sizing: border-box;
 }
 

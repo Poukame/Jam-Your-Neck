@@ -27,15 +27,17 @@ function getScale(scale, tone) {
     } return minPentatonic
 }
 
-function calcScale(scaleType, chordsType) {
-    const startNb = (chordsType.indexOf(selectedRoot));
+function calcScale(scaleType, chordsType, rootNote) {
+    const startNb = (chordsType.indexOf(rootNote));
     const result = [];
     scaleType.forEach(interval => {
         result.push((chordsType[startNb+interval]))     
 })
 return result}
 
-calcScale(getScale(selectedPentaDia, selectedTone), getSharpOrFlat(selectedSharpFlat))
+// calcScale(getScale(selectedPentaDia, selectedTone), chordsSharp, 'E')
+
+export {getScale, calcScale, chordsSharp}
 
 // switch(selectedMode) {
 //     case 'Ionian':
@@ -55,4 +57,4 @@ calcScale(getScale(selectedPentaDia, selectedTone), getSharpOrFlat(selectedSharp
 //     default: modeShift += 0
 // }
 
-// <Circle bgColor='red' width='40px' height='40px' p='2' textAlign='center' borderRadius='1000' transform="auto" translateY="-20px">A</Circle>
+// <Circle bgColor='red' size='40px' p='2' textAlign='center' borderRadius='1000' transform="auto" translateY="-20px">A</Circle>

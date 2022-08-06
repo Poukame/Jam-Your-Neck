@@ -5,26 +5,11 @@ import Header from './Components/Header';
 import ScaleType from './Components/ScaleType';
 import Tone from './Components/Tone';
 import Neck from './Components/Neck';
+import { calcScale, chordsSharp, getScale } from './assets/scale-function';
+export { getScale, calcScale, chordsSharp } from './assets/scale-function';
 
 function App() {
-	type initialStateRootNote = { note: string; isSelected: boolean }[];
-	type initialStateScaleType = { type: string; isSelected: boolean }[];
-	type initialStateTone = { tone: string; isSelected: boolean }[];
-
-	const NOTES: readonly string[] = [
-		'A',
-		'A#',
-		'B',
-		'C',
-		'C#',
-		'D',
-		'D#',
-		'E',
-		'F',
-		'F#',
-		'G',
-		'G#',
-	];
+	const NOTES = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
 
 	const initialStateRootNote = NOTES.map((el) => {
 		return {
@@ -46,8 +31,8 @@ function App() {
 
 	const [scaleType, setScaleType] = useState(initialStateScaleType);
 
-	function handleClickScaleType(type: string, isSelected: boolean) {
-		setScaleType((el) => {
+	function handleClickScaleType(type, isSelected) {
+		!isSelected && setScaleType((el) => {
 			return el.map((el) => {
 				return el.type === type
 					? {
@@ -64,8 +49,8 @@ function App() {
 
 	const [rootNote, setRootNote] = useState(initialStateRootNote);
 
-	function handleClickRootNote(note: string, isSelected: boolean) {
-		setRootNote((el) => {
+	function handleClickRootNote(note, isSelected) {
+		!isSelected && setRootNote((el) => {
 			return el.map((el) => {
 				return el.note === note
 					? {
@@ -93,8 +78,8 @@ function App() {
 
 	const [tone, setTone] = useState(initialStateTone);
 
-	function handleClickTone(tone: string, isSelected: boolean) {
-		setTone((el) => {
+	function handleClickTone(tone, isSelected) {
+		!isSelected && setTone((el) => {
 			return el.map((el) => {
 				return el.tone === tone
 					? {
@@ -111,8 +96,15 @@ function App() {
 
 	const [mode, setMode] = useState('Dorian');
 
+	const selectedRootNote = rootNote.find((el) => el.isSelected === true).note;
+	const selectedScaleType = scaleType.find((el) => el.isSelected === true).type;
+	const selectedTone = tone.find((el) => el.isSelected === true).tone;
+
+	const calculatedScale = calcScale(getScale(selectedScaleType, selectedTone), chordsSharp, selectedRootNote);
+	// console.log('~ gamme', calculatedScale);
+
 	return (
-		<Box maxW='1200px' border='2px solid red'>
+		<Box maxW='100%'>
 			<Header />
 			<Flex direction='column' gap='6'>
 				<RootNote rootNote={rootNote} handleClick={handleClickRootNote} />
@@ -120,7 +112,7 @@ function App() {
 					<ScaleType scaleType={scaleType} handleClick={handleClickScaleType} />
 					<Tone tone={tone} handleClick={handleClickTone} />
 				</Flex>
-      <Neck />
+				<Neck calculatedScale={calculatedScale}/>
 			</Flex>
 		</Box>
 	);
