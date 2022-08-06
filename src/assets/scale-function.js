@@ -7,11 +7,11 @@ const minPentatonic = [0, 3, 5, 7, 10]; // remove 2nd and 6th
 let modeShift = 0
 
 //// USER INPUT
-const selectedRoot = 'E';
-const selectedTone = 'Minor' // or 'Minor'
-const selectedMode = 'Lydian';
-const selectedPentaDia = 'Pentatonic'; // or 'Pentatonic'
-const selectedSharpFlat = 'Sharp';
+// const selectedRoot = 'E';
+// const selectedTone = 'Minor' // or 'Minor'
+// const selectedMode = 'Lydian';
+// const selectedPentaDia = 'Pentatonic'; // or 'Pentatonic'
+// const selectedSharpFlat = 'Sharp';
 
 function getSharpOrFlat(value) {
     return ((value === 'Sharp') ? chordsSharp : chordsFlat);
@@ -57,4 +57,3 @@ export {getScale, calcScale, chordsSharp}
 //     default: modeShift += 0
 // }
 
-// <Circle bgColor='red' size='40px' p='2' textAlign='center' borderRadius='1000' transform="auto" translateY="-20px">A</Circle>

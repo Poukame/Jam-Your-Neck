@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Stack, Wrap, Text } from '@chakra-ui/react';
+import { Box, Button, HStack, Wrap, Text } from '@chakra-ui/react';
 
 
 
@@ -20,10 +20,10 @@ export default function ScaleType({scaleType, handleClick}) {
 
     return (
         <Box>
-            <Text fontSize='xl' as='b'> Scale Type:</Text>
-            <Box>
+            <Text fontSize='xl' my='4' fontWeight='700'> Scale Type:</Text>
+            <HStack>
                 {scaleTypeHTML}
-            </Box>
+            </HStack>
         </Box>
     )
 }

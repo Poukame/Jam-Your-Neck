@@ -6,7 +6,6 @@ import ScaleType from './Components/ScaleType';
 import Tone from './Components/Tone';
 import Neck from './Components/Neck';
 import { calcScale, chordsSharp, getScale } from './assets/scale-function';
-export { getScale, calcScale, chordsSharp } from './assets/scale-function';
 
 function App() {
 	const NOTES = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
@@ -101,14 +100,13 @@ function App() {
 	const selectedTone = tone.find((el) => el.isSelected === true).tone;
 
 	const calculatedScale = calcScale(getScale(selectedScaleType, selectedTone), chordsSharp, selectedRootNote);
-	// console.log('~ gamme', calculatedScale);
 
 	return (
-		<Box maxW='100%'>
+		<Box maxW='100%' p='4'>
 			<Header />
 			<Flex direction='column' gap='6'>
 				<RootNote rootNote={rootNote} handleClick={handleClickRootNote} />
-				<Flex gap='8'>
+				<Flex gap='8' mb='8' alignItems='center'>
 					<ScaleType scaleType={scaleType} handleClick={handleClickScaleType} />
 					<Tone tone={tone} handleClick={handleClickTone} />
 				</Flex>

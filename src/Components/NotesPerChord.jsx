@@ -4,17 +4,31 @@ import { allChordsNotes } from '../assets/AllChordsNotes';
 import { nanoid } from 'nanoid';
 
 export default function NotesPerChord({ chord, calculatedScale }) {
-
 	const allChordNotes = allChordsNotes[chord].note.map((el, index) => {
 		const isInScale = calculatedScale.some((note) => note === el);
 		const isRoot = calculatedScale[0];
 
+		let styleBottomNeck = {};
+
+		function isBottom() {
+			if (chord === 5) {
+				return (styleBottomNeck = { borderBottom: 'none', borderRight: 'none', borderLeft: 'none' });
+			}
+		}
+
+
 		return (
-			<GridItem w='100%' h='10' border='1px solid gray' justifyContent='center' key={nanoid()}>
+			<GridItem
+				w='100%'
+				h='10'
+				border='1px solid gray'
+				justifyContent='center'
+				sx={isBottom()}
+				key={nanoid()}
+			>
 				{index === 0 ? (
 					<Circle
 						bgColor='gray'
-						// border='1px red solid'
 						color='white'
 						size='30px'
 						p='2'
@@ -30,7 +44,6 @@ export default function NotesPerChord({ chord, calculatedScale }) {
 					isInScale && (
 						<Circle
 							bgColor={isRoot === el ? 'red' : 'blue.500'}
-							// border='1px red solid'
 							color='white'
 							size='30px'
 							p='2'

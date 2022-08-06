@@ -19,7 +19,7 @@ export default function RootNote({rootNote, handleClick}) {
 
 	return (
 		<Box>
-			<Text fontSize='xl' as='b'>Notes:</Text>
+			<Text fontSize='xl' my='4' fontWeight='700'>Notes:</Text>
 			<Stack direction='row'>
 				<Wrap>{notesHTML}</Wrap>
 			</Stack>
