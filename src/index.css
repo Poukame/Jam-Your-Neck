@@ -1,0 +1,40 @@
+:root {
+	font-size: min(calc(0.7em + 1vw), 18px);
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+h1,
+h2,
+h3 {
+	line-height: 1;
+	margin: 0;
+}
+
+img {
+	width: 100%;
+	display: block;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 100vh;
+}
