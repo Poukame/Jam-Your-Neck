@@ -6,11 +6,15 @@ const majPentatonic = [0, 2, 4, 7, 9]; // remove 4th and 7th
 const minPentatonic = [0, 3, 5, 7, 10]; // remove 2nd and 6th
 let modeShift = 0
 
+let Sharp = 'Sharp'
+
+let test = chordsFlat.slice(0, 12)
+
 //// USER INPUT
 // const selectedRoot = 'E';
 // const selectedTone = 'Minor' // or 'Minor'
 // const selectedMode = 'Lydian';
-// const selectedPentaDia = 'Pentatonic'; // or 'Pentatonic'
+// const selectedPentaDia = 'Diatonic'; // or 'Pentatonic'
 // const selectedSharpFlat = 'Sharp';
 
 function getSharpOrFlat(value) {
@@ -35,9 +39,9 @@ function calcScale(scaleType, chordsType, rootNote) {
 })
 return result}
 
-// calcScale(getScale(selectedPentaDia, selectedTone), chordsSharp, 'E')
+// calcScale(getScale(selectedPentaDia, selectedTone), chordsFlat, 'E')
 
-export {getScale, calcScale, chordsSharp}
+export {getScale, getSharpOrFlat, calcScale }
 
 // switch(selectedMode) {
 //     case 'Ionian':

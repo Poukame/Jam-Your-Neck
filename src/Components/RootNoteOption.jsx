@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Box, Button, Stack, Wrap, Text } from '@chakra-ui/react';
+import { Context } from '../OptionsContext';
 
-
-export default function RootNote({rootNote, handleClick}) {
+export default function RootNoteOption() {
 	
+	const {rootNote, handleClickRootNote} = useContext(Context)
+
 	const notesHTML = rootNote.map(el => {
 		return (
 			<Button
 				colorScheme='blue'
 				variant={el.isSelected ? 'solid' : 'outline'}
-				onClick={() => handleClick(el.note, el.isSelected)}
+				onClick={() => handleClickRootNote(el.note, el.isSelected)}
 				key={el.note}
 			>
 				{el.note}

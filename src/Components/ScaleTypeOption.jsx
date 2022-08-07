@@ -1,16 +1,18 @@
-import React from 'react'
-import { Box, Button, HStack, Wrap, Text } from '@chakra-ui/react';
+import React, {useContext} from 'react'
+import { Box, Button, HStack, Text } from '@chakra-ui/react';
+import { Context } from '../OptionsContext';
 
 
+export default function ScaleTypeOption() {
 
-export default function ScaleType({scaleType, handleClick}) {
+    const {scaleType, handleClickScaleType} = useContext(Context)
 
     const scaleTypeHTML = scaleType.map(el => {
         return (
             <Button
             colorScheme='blue'
             variant={el.isSelected ? 'solid' : 'outline'}
-            onClick={() => handleClick(el.type, el.isSelected)}
+            onClick={() => handleClickScaleType(el.type, el.isSelected)}
             key={el.type}
         >
             {el.type}

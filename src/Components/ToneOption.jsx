@@ -1,15 +1,17 @@
-import React from 'react'
-import { Box, Button, HStack, Wrap, Text } from '@chakra-ui/react';
+import React, {useContext} from 'react'
+import { Box, Button, HStack, Text } from '@chakra-ui/react';
+import { Context } from '../OptionsContext';
 
+export default function ToneOption() {
 
-export default function Tone({tone, handleClick}) {
+    const {tone, handleClickTone} = useContext(Context)
 
     const toneHTML = tone.map(el => {
         return (
             <Button
             colorScheme='blue'
             variant={el.isSelected ? 'solid' : 'outline'}
-            onClick={() => handleClick(el.tone, el.isSelected)}
+            onClick={() => handleClickTone(el.tone, el.isSelected)}
             key={el.tone}
         >
             {el.tone}

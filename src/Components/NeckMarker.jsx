@@ -28,12 +28,12 @@ export default function NeckMarker({ chord, position }) {
 			return (
 				<GridItem w='100%' h='10' justifyContent='center' key={nanoid()}>
 					<Text
-						fontSize='xl'
+						fontSize='3xl'
 						transform='auto'
-						translateY='-25px'
+						translateY='-30px'
 						mx='auto'
 						textAlign='center'
-						color='gray'
+						color='black'
 					>
 						{isDotMarker && (index === 12 ? '• •' : '•')}
 					</Text>

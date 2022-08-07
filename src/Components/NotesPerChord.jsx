@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { GridItem, Circle } from '@chakra-ui/react';
 import { allChordsNotes } from '../assets/AllChordsNotes';
 import { nanoid } from 'nanoid';
+import { Context } from '../OptionsContext';
 
-export default function NotesPerChord({ chord, calculatedScale }) {
+export default function NotesPerChord({ chord }) {
+
+	const {calculatedScale} = useContext(Context)
+
 	const allChordNotes = allChordsNotes[chord].note.map((el, index) => {
 		const isInScale = calculatedScale.some((note) => note === el);
 		const isRoot = calculatedScale[0];
