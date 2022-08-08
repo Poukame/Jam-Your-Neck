@@ -7,6 +7,7 @@ import ScaleTypeOption from './Components/ScaleTypeOption';
 import Neck from './Components/Neck';
 import NotationOption from './Components/NotationOption';
 import ShowAllNotesOption from './Components/ShowAllNotesOption';
+import RootMarkerOption from './Components/RootMarkerOption';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 					<ToneOption />
 					<NotationOption />
 					<ShowAllNotesOption/>
+					<RootMarkerOption />
 				</Flex>
 				<Neck />
 			</Flex>

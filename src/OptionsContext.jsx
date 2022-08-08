@@ -21,6 +21,15 @@ function ContextProvider({ children }) {
 	}
 
 
+		//// SHOW  ROOT MARKER
+
+		const [showRootMarker, setShowRootMarker] = useState(true)
+
+		function handleClickRootMarker() {
+			setShowRootMarker(!showRootMarker)
+		}
+
+
 	////// NOTATION
 
 	const initialNotation = [
@@ -185,7 +194,9 @@ function ContextProvider({ children }) {
 				handleClickNotation,
 				selectedNotation,
 				handleClickShowAllNotes,
-				showAll
+				showAll,
+				showRootMarker,
+				handleClickRootMarker
 			}}
 		>
 			{children}

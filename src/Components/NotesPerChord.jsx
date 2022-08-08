@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import { Context } from '../OptionsContext';
 
 export default function NotesPerChord({ stringNb }) {
-	const { calculatedScale, selectedNotation, showAll } = useContext(Context);
+	const { calculatedScale, selectedNotation, showAll, showRootMarker } = useContext(Context);
 	
 	const sharpOrFlatScale =
 		selectedNotation === 'Sharp' ? allNeckNotes[stringNb].Sharp : allNeckNotes[stringNb].Flat;
@@ -25,7 +25,7 @@ export default function NotesPerChord({ stringNb }) {
 	const renderStringNotes = sharpOrFlatScale.map((el, index) => {
 		
 		const isInScale = showAll ? sharpOrFlatScale : calculatedScale.some((note) => note === el);
-		const isRoot = calculatedScale[0];
+		const isRoot = showRootMarker && calculatedScale[0];
 
 		return (
 			<GridItem
