@@ -1,12 +1,63 @@
-import React, { createContext, useState } from 'react';
-import { getScale, getSharpOrFlat, calcScale } from '../src/assets/scale-function';
+import React, { createContext, useState, useEffect } from 'react';
+import {
+	getScale,
+	getSharpOrFlat,
+	calcScale,
+	chordsFlat,
+	chordsSharp,
+} from '../src/assets/scale-function';
 
 const Context = createContext();
 
 function ContextProvider({ children }) {
-	////// ROOT NOTE
+	const [NOTES, setNOTES] = useState(chordsSharp.slice(0, 12));
 
-	const NOTES = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
+	////// NOTATION
+
+	const initialNotation = [
+		{
+			notation: 'Sharp',
+			isSelected: true,
+		},
+		{
+			notation: 'Flat',
+			isSelected: false,
+		},
+	];
+	const [notation, setNotation] = useState(initialNotation);
+
+	function handleClickNotation(notation, isSelected) {
+		!isSelected &&
+			setNotation((el) => {
+				return el.map((el) => {
+					return el.notation === notation
+						? {
+								...el,
+								isSelected: !isSelected,
+						  }
+						: {
+								...el,
+								isSelected: false,
+						  };
+				});
+			});
+
+		!isSelected &&
+			setNOTES((prev) =>
+				prev[1] === chordsSharp[1] ? chordsFlat.slice(0, 12) : chordsSharp.slice(0, 12)
+			);
+	}
+
+	useEffect(() => {
+		setRootNote((prev) => {
+			return prev.map((el, index) => {
+				return {
+					isSelected: el.isSelected,
+					note: NOTES[index],
+				};
+			});
+		});
+	}, [NOTES]);
 
 	const initialStateRootNote = NOTES.map((el) => {
 		return {
@@ -65,6 +116,8 @@ function ContextProvider({ children }) {
 			});
 	}
 
+	///// TONE
+
 	const initialStateTone = [
 		{
 			tone: 'Minor',
@@ -75,9 +128,6 @@ function ContextProvider({ children }) {
 			isSelected: false,
 		},
 	];
-
-	///// TONE
-
 	const [tone, setTone] = useState(initialStateTone);
 
 	function handleClickTone(tone, isSelected) {
@@ -99,15 +149,14 @@ function ContextProvider({ children }) {
 
 	const [mode, setMode] = useState('Dorian');
 
-	const [sharpOrFlat, setSharpOrFlat] = useState('Sharp');
-
-	const selectedRootNote = rootNote.find((el) => el.isSelected === true).note;
 	const selectedScaleType = scaleType.find((el) => el.isSelected === true).type;
 	const selectedTone = tone.find((el) => el.isSelected === true).tone;
+	const selectedNotation = notation.find((el) => el.isSelected === true).notation;
+	const selectedRootNote = rootNote.find((el) => el.isSelected === true).note;
 
 	const calculatedScale = calcScale(
 		getScale(selectedScaleType, selectedTone),
-		getSharpOrFlat(sharpOrFlat),
+		getSharpOrFlat(selectedNotation),
 		selectedRootNote
 	);
 
@@ -121,6 +170,9 @@ function ContextProvider({ children }) {
 				tone,
 				handleClickTone,
 				calculatedScale,
+				notation,
+				handleClickNotation,
+				selectedNotation,
 			}}
 		>
 			{children}

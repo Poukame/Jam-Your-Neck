@@ -4,11 +4,6 @@ const majScale = [0, 2, 4, 5, 7, 9, 11];
 const minScale = [0, 2, 3, 5, 7, 8, 10];
 const majPentatonic = [0, 2, 4, 7, 9]; // remove 4th and 7th
 const minPentatonic = [0, 3, 5, 7, 10]; // remove 2nd and 6th
-let modeShift = 0
-
-let Sharp = 'Sharp'
-
-let test = chordsFlat.slice(0, 12)
 
 //// USER INPUT
 // const selectedRoot = 'E';
@@ -41,7 +36,7 @@ return result}
 
 // calcScale(getScale(selectedPentaDia, selectedTone), chordsFlat, 'E')
 
-export {getScale, getSharpOrFlat, calcScale }
+export { getScale, getSharpOrFlat, calcScale, chordsFlat, chordsSharp }
 
 // switch(selectedMode) {
 //     case 'Ionian':

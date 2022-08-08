@@ -1,14 +1,16 @@
 import React, {useContext} from 'react';
 import { GridItem, Circle } from '@chakra-ui/react';
-import { allChordsNotes } from '../assets/AllChordsNotes';
+import { allNeckNotes } from '../assets/AllNeckNotes';
 import { nanoid } from 'nanoid';
 import { Context } from '../OptionsContext';
 
 export default function NotesPerChord({ chord }) {
 
-	const {calculatedScale} = useContext(Context)
+	const {calculatedScale, selectedNotation} = useContext(Context)
+	const sharpOrFlatScale = (selectedNotation === 'Sharp') ? allNeckNotes[chord].Sharp : allNeckNotes[chord].Flat
 
-	const allChordNotes = allChordsNotes[chord].note.map((el, index) => {
+	const allNeckNote = sharpOrFlatScale.map((el, index) => {
+		
 		const isInScale = calculatedScale.some((note) => note === el);
 		const isRoot = calculatedScale[0];
 
@@ -65,5 +67,5 @@ export default function NotesPerChord({ chord }) {
 		);
 	});
 
-	return <>{allChordNotes}</>;
+	return <>{allNeckNote}</>;
 }

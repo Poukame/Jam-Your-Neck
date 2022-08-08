@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { GridItem, Text } from '@chakra-ui/react';
-import { allChordsNotes } from '../assets/AllChordsNotes';
+import { allNeckNotes } from '../assets/AllNeckNotes';
 import { nanoid } from 'nanoid';
+import { Context } from '../OptionsContext';
 
 export default function NeckMarker({ chord, position }) {
 	const dotMarkerPosition = [3, 5, 7, 9, 12, 15, 18, 21];
 
-	const neckMarker = allChordsNotes[chord].note.map((el, index) => {
+	const {selectedNotation} = useContext(Context)
+	const sharpOrFlatScale = (selectedNotation === 'Sharp') ? allNeckNotes[chord].Sharp : allNeckNotes[chord].Flat
+
+	const neckMarker = sharpOrFlatScale.map((el, index) => {
 		if (position === 'top') {
 			return (
 				<GridItem

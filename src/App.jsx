@@ -5,6 +5,7 @@ import RootNoteOption from './Components/RootNoteOption';
 import ToneOption from './Components/ToneOption';
 import ScaleTypeOption from './Components/ScaleTypeOption';
 import Neck from './Components/Neck';
+import NotationOption from './Components/NotationOption';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 				<Flex gap='8' mb='8' alignItems='center'>
 					<ScaleTypeOption />
 					<ToneOption />
+					<NotationOption />
 				</Flex>
 				<Neck />
 			</Flex>
