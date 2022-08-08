@@ -8,14 +8,14 @@ export default function Neck() {
 	return (
 		<>
 			<Grid templateColumns='repeat(22, minmax(50px, 100px))' columnGap='0'>
-                <NeckMarker chord={0} position={'top'}/>
-                <NotesPerChord chord={0} />
-                <NotesPerChord chord={1} />
-                <NotesPerChord chord={2} />
-                <NotesPerChord chord={3} />
-                <NotesPerChord chord={4} />
-                <NotesPerChord chord={5} />
-                <NeckMarker chord={0} position={'bottom'}/>
+                <NeckMarker stringNb={0} position={'top'}/>
+                <NotesPerChord stringNb={0} />
+                <NotesPerChord stringNb={1} />
+                <NotesPerChord stringNb={2} />
+                <NotesPerChord stringNb={3} />
+                <NotesPerChord stringNb={4} />
+                <NotesPerChord stringNb={5} />
+                <NeckMarker stringNb={0} position={'bottom'}/>
 			</Grid>
 		</>
 	);

@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, Show } from '@chakra-ui/react';
 import Header from './Components/Header';
 import RootNoteOption from './Components/RootNoteOption';
 import ToneOption from './Components/ToneOption';
 import ScaleTypeOption from './Components/ScaleTypeOption';
 import Neck from './Components/Neck';
 import NotationOption from './Components/NotationOption';
+import ShowAllNotesOption from './Components/ShowAllNotesOption';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 					<ScaleTypeOption />
 					<ToneOption />
 					<NotationOption />
+					<ShowAllNotesOption/>
 				</Flex>
 				<Neck />
 			</Flex>

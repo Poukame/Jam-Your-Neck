@@ -1,27 +1,31 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { GridItem, Circle } from '@chakra-ui/react';
 import { allNeckNotes } from '../assets/AllNeckNotes';
 import { nanoid } from 'nanoid';
 import { Context } from '../OptionsContext';
 
-export default function NotesPerChord({ chord }) {
+export default function NotesPerChord({ stringNb }) {
+	const { calculatedScale, selectedNotation, showAll } = useContext(Context);
+	
+	const sharpOrFlatScale =
+		selectedNotation === 'Sharp' ? allNeckNotes[stringNb].Sharp : allNeckNotes[stringNb].Flat;
 
-	const {calculatedScale, selectedNotation} = useContext(Context)
-	const sharpOrFlatScale = (selectedNotation === 'Sharp') ? allNeckNotes[chord].Sharp : allNeckNotes[chord].Flat
+	let styleBottomNeck = {};
 
-	const allNeckNote = sharpOrFlatScale.map((el, index) => {
-		
-		const isInScale = calculatedScale.some((note) => note === el);
-		const isRoot = calculatedScale[0];
-
-		let styleBottomNeck = {};
-
-		function isBottom() {
-			if (chord === 5) {
-				return (styleBottomNeck = { borderBottom: 'none', borderRight: 'none', borderLeft: 'none' });
-			}
+	function isBottom() {
+		if (stringNb === 5) {
+			return (styleBottomNeck = {
+				borderBottom: 'none',
+				borderRight: 'none',
+				borderLeft: 'none',
+			});
 		}
+	}
 
+	const renderStringNotes = sharpOrFlatScale.map((el, index) => {
+		
+		const isInScale = showAll ? sharpOrFlatScale : calculatedScale.some((note) => note === el);
+		const isRoot = calculatedScale[0];
 
 		return (
 			<GridItem
@@ -67,5 +71,5 @@ export default function NotesPerChord({ chord }) {
 		);
 	});
 
-	return <>{allNeckNote}</>;
+	return <>{renderStringNotes}</>;
 }

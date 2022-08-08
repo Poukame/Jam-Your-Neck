@@ -4,11 +4,11 @@ import { allNeckNotes } from '../assets/AllNeckNotes';
 import { nanoid } from 'nanoid';
 import { Context } from '../OptionsContext';
 
-export default function NeckMarker({ chord, position }) {
+export default function NeckMarker({ stringNb, position }) {
 	const dotMarkerPosition = [3, 5, 7, 9, 12, 15, 18, 21];
 
 	const {selectedNotation} = useContext(Context)
-	const sharpOrFlatScale = (selectedNotation === 'Sharp') ? allNeckNotes[chord].Sharp : allNeckNotes[chord].Flat
+	const sharpOrFlatScale = (selectedNotation === 'Sharp') ? allNeckNotes[stringNb].Sharp : allNeckNotes[stringNb].Flat
 
 	const neckMarker = sharpOrFlatScale.map((el, index) => {
 		if (position === 'top') {

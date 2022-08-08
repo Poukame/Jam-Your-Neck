@@ -12,6 +12,15 @@ const Context = createContext();
 function ContextProvider({ children }) {
 	const [NOTES, setNOTES] = useState(chordsSharp.slice(0, 12));
 
+	//// SHOW ALL NOTES
+
+	const [showAll, setShowAll] = useState(false)
+
+	function handleClickShowAllNotes() {
+		setShowAll(!showAll)
+	}
+
+
 	////// NOTATION
 
 	const initialNotation = [
@@ -58,6 +67,8 @@ function ContextProvider({ children }) {
 			});
 		});
 	}, [NOTES]);
+
+	///// ROOTNOTE
 
 	const initialStateRootNote = NOTES.map((el) => {
 		return {
@@ -173,6 +184,8 @@ function ContextProvider({ children }) {
 				notation,
 				handleClickNotation,
 				selectedNotation,
+				handleClickShowAllNotes,
+				showAll
 			}}
 		>
 			{children}
