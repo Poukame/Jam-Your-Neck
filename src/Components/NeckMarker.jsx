@@ -10,7 +10,7 @@ export default function NeckMarker({ stringNb, position }) {
 	const {selectedNotation} = useContext(Context)
 	const sharpOrFlatScale = (selectedNotation === 'Sharp') ? allNeckNotes[stringNb].Sharp : allNeckNotes[stringNb].Flat
 
-	const neckMarker = sharpOrFlatScale.map((el, index) => {
+	const neckMarker = sharpOrFlatScale.map((_, index) => {
 		if (position === 'top') {
 			return (
 				<GridItem
@@ -20,7 +20,7 @@ export default function NeckMarker({ stringNb, position }) {
 					justifyContent='center'
 					key={nanoid()}
 				>
-					<Text transform='auto' translateY='-5px' mx='auto' textAlign='center' color='gray'>
+					<Text transform='auto' translateY='-5px' mx='auto' textAlign='center' color='gray.500'>
 						{index !== 0 ? index : ''}
 					</Text>
 				</GridItem>
@@ -37,7 +37,7 @@ export default function NeckMarker({ stringNb, position }) {
 						translateY='-30px'
 						mx='auto'
 						textAlign='center'
-						color='black'
+						color='black.500'
 					>
 						{isDotMarker && (index === 12 ? '• •' : '•')}
 					</Text>
