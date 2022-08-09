@@ -4,12 +4,13 @@ import App from './App';
 import { ChakraProvider } from '@chakra-ui/react';
 import './index.css';
 import { ContextProvider } from './OptionsContext';
-import theme from './assets/theme'
+import theme from './theme'
 import { ColorModeScript } from '@chakra-ui/react'
+import '@fontsource/nunito'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-		<ChakraProvider value={theme}>
+		<ChakraProvider theme={theme}>
 			<ContextProvider>
 			<ColorModeScript initialColorMode={theme.config.initialColorMode} />
 				<App />

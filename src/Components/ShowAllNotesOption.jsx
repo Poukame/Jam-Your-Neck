@@ -11,7 +11,7 @@ export default function ShowAllNotesOption() {
 
     return (
         <Box>
-            <Text fontSize='xl' my='4' fontWeight='700'> Show All Notes:</Text>
+            
             <Button 
             leftIcon={showAll ? <AiFillEyeInvisible/> : <AiFillEye/>}
             colorScheme='blue'

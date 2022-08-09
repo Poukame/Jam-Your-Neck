@@ -21,7 +21,7 @@ export default function RootNoteOption() {
 
 	return (
 		<Box>
-			<Text fontSize='xl' my='4' fontWeight='700'>Notes:</Text>
+			<Text fontSize='xl' my='4' fontWeight='700'>Root Note:</Text>
 			<Stack direction='row'>
 				<Wrap>{notesHTML}</Wrap>
 			</Stack>

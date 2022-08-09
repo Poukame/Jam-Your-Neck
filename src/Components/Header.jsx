@@ -8,13 +8,13 @@ export default function Header() {
 
 	return (
        
-		<Flex alignItems='center' bgColor='blue.500' p='2'>
-			<Text fontSize='2xl'>KYN</Text>
+		<Flex alignItems='center' bgColor='blue.500' p='4'>
+			<Text fontSize='2xl' fontWeight='700'>Know Your Neck</Text>
             <Spacer/>
 			<Flex alignItems='center' gap='4' mt='0'>
-                <Text flexShrink="0">Install App</Text>
-					{colorMode === 'dark' ? <MdLightMode/> : <MdModeNight/>}
-					<Switch id='theme-switch' colorScheme='red' onChange={toggleColorMode} />
+                <Text fontSize='xl' flexShrink="0">Install App</Text>
+					{colorMode === 'dark' ? <MdLightMode size='1.5em'/> : <MdModeNight size='1.5em'/>}
+					<Switch size='lg' id='theme-switch' colorScheme='red' onChange={toggleColorMode} />
 			</Flex>
 		</Flex>
 	);

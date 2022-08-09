@@ -11,9 +11,8 @@ export default function RootMarkerOption() {
 
     return (
         <Box>
-            <Text fontSize='xl' my='4' fontWeight='700'> Show Root Marker:</Text>
             <Button 
-            leftIcon={showRootMarker ? <AiFillEyeInvisible/> : <AiFillEye/>}
+            leftIcon={showRootMarker ? <AiFillEyeInvisible/> : <AiFillEye color='red' />}
             colorScheme='blue'
             variant='outline'
             onClick={() => handleClickRootMarker()}>
