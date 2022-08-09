@@ -14,21 +14,19 @@ function ContextProvider({ children }) {
 
 	//// SHOW ALL NOTES
 
-	const [showAll, setShowAll] = useState(false)
+	const [showAll, setShowAll] = useState(false);
 
 	function handleClickShowAllNotes() {
-		setShowAll(!showAll)
+		setShowAll(!showAll);
 	}
 
+	//// SHOW  ROOT MARKER
 
-		//// SHOW  ROOT MARKER
+	const [showRootMarker, setShowRootMarker] = useState(true);
 
-		const [showRootMarker, setShowRootMarker] = useState(true)
-
-		function handleClickRootMarker() {
-			setShowRootMarker(!showRootMarker)
-		}
-
+	function handleClickRootMarker() {
+		setShowRootMarker(!showRootMarker);
+	}
 
 	////// NOTATION
 
@@ -167,7 +165,6 @@ function ContextProvider({ children }) {
 			});
 	}
 
-	const [mode, setMode] = useState('Dorian');
 
 	const selectedScaleType = scaleType.find((el) => el.isSelected === true).type;
 	const selectedTone = tone.find((el) => el.isSelected === true).tone;
@@ -196,7 +193,10 @@ function ContextProvider({ children }) {
 				handleClickShowAllNotes,
 				showAll,
 				showRootMarker,
-				handleClickRootMarker
+				handleClickRootMarker,
+				selectedRootNote,
+				selectedScaleType,
+				selectedTone,
 			}}
 		>
 			{children}

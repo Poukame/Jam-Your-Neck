@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { ChakraProvider } from '@chakra-ui/react';
-import './index.css';
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { ContextProvider } from './OptionsContext';
 import theme from './theme'
-import { ColorModeScript } from '@chakra-ui/react'
-import '@fontsource/nunito'
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>

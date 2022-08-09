@@ -10,6 +10,7 @@ export default function ToneOption() {
         return (
             <Button
             colorScheme='blue'
+            letterSpacing='wider'
             variant={el.isSelected ? 'solid' : 'outline'}
             onClick={() => handleClickTone(el.tone, el.isSelected)}
             key={el.tone}

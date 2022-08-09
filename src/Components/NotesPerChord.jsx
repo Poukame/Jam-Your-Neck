@@ -40,12 +40,12 @@ export default function NotesPerChord({ stringNb }) {
 					<Circle
 						bgColor='gray'
 						color='white'
-						size='30px'
+						size='1.8rem'
 						p='2'
 						textAlign='center'
 						borderRadius='100'
 						transform='auto'
-						translateY='-15px'
+						translateY='-.9rem'
 						mx='auto'
 					>
 						{el}
@@ -55,12 +55,12 @@ export default function NotesPerChord({ stringNb }) {
 						<Circle
 							bgColor={isRoot === el ? 'red' : 'blue.500'}
 							color='white'
-							size='30px'
+							size='1.8rem'
 							p='2'
 							textAlign='center'
 							borderRadius='100'
 							transform='auto'
-							translateY='-15px'
+							translateY='-.9rem'
 							mx='auto'
 						>
 							{el}

@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import { Context } from '../OptionsContext'
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
 
 
@@ -15,6 +15,7 @@ export default function ShowAllNotesOption() {
             <Button 
             leftIcon={showAll ? <AiFillEyeInvisible/> : <AiFillEye/>}
             colorScheme='blue'
+            letterSpacing='wide'
             variant='outline'
             onClick={() => handleClickShowAllNotes()}>
                 {showAll ? 'Hide' : 'Show'} All Notes

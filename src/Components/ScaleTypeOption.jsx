@@ -11,6 +11,7 @@ export default function ScaleTypeOption() {
         return (
             <Button
             colorScheme='blue'
+            letterSpacing='wider'
             variant={el.isSelected ? 'solid' : 'outline'}
             onClick={() => handleClickScaleType(el.type, el.isSelected)}
             key={el.type}

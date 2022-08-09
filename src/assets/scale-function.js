@@ -5,6 +5,17 @@ const minScale = [0, 2, 3, 5, 7, 8, 10];
 const majPentatonic = [0, 2, 4, 7, 9]; // remove 4th and 7th
 const minPentatonic = [0, 3, 5, 7, 10]; // remove 2nd and 6th
 
+const stepsCalc = minPentatonic
+	.map((value, index, array) => {
+		if (value - (array[index - 1] || 0) === 2) {
+			return 'W';
+		} else if (value - (array[index - 1] || 0) === 3) {
+			return '1.5';
+		}
+		return 'H';
+	})
+	.slice(1);
+
 //// USER INPUT
 // const selectedRoot = 'E';
 // const selectedTone = 'Minor' // or 'Minor'
@@ -13,30 +24,33 @@ const minPentatonic = [0, 3, 5, 7, 10]; // remove 2nd and 6th
 // const selectedSharpFlat = 'Sharp';
 
 function getSharpOrFlat(value) {
-    return ((value === 'Sharp') ? chordsSharp : chordsFlat);
+	return value === 'Sharp' ? chordsSharp : chordsFlat;
 }
 
 function getScale(scale, tone) {
-    if(scale === 'Diatonic') {
-        if(tone === 'Major') {
-            return majScale
-        } return minScale
-    } else if (tone === 'Major') {
-        return majPentatonic
-    } return minPentatonic
+	if (scale === 'Diatonic') {
+		if (tone === 'Major') {
+			return majScale;
+		}
+		return minScale;
+	} else if (tone === 'Major') {
+		return majPentatonic;
+	}
+	return minPentatonic;
 }
 
 function calcScale(scaleType, chordsType, rootNote) {
-    const startNb = (chordsType.indexOf(rootNote));
-    const result = [];
-    scaleType.forEach(interval => {
-        result.push((chordsType[startNb+interval]))     
-})
-return result}
+	const startNb = chordsType.indexOf(rootNote);
+	const result = [];
+	scaleType.forEach((interval) => {
+		result.push(chordsType[startNb + interval]);
+	});
+	return result;
+}
 
 // calcScale(getScale(selectedPentaDia, selectedTone), chordsFlat, 'E')
 
-export { getScale, getSharpOrFlat, calcScale, chordsFlat, chordsSharp }
+export { getScale, getSharpOrFlat, calcScale, chordsFlat, chordsSharp };
 
 // switch(selectedMode) {
 //     case 'Ionian':
@@ -55,4 +69,3 @@ export { getScale, getSharpOrFlat, calcScale, chordsFlat, chordsSharp }
 //     break;
 //     default: modeShift += 0
 // }
-

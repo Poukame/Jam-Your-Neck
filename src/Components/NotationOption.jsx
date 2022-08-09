@@ -10,6 +10,7 @@ export default function NotationOption() {
         return (
             <Button
             colorScheme='blue'
+            letterSpacing='wider'
             variant={el.isSelected ? 'solid' : 'outline'}
             onClick={() => handleClickNotation(el.notation, el.isSelected)}
             key={el.notation}
