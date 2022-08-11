@@ -8,6 +8,7 @@ import NotationOption from './Components/NotationOption';
 import ShowAllNotesOption from './Components/ShowAllNotesOption';
 import RootMarkerOption from './Components/RootMarkerOption';
 import { GoSettings, GoSearch, GoInfo } from 'react-icons/go';
+import SongSearch from './Components/SongSearch';
 
 function App() {
 	return (
@@ -43,7 +44,7 @@ function App() {
 						</Flex>
 					</TabPanel>
 					<TabPanel>
-						<p>Coming Soon</p>
+						<SongSearch />
 					</TabPanel>
 					<TabPanel>
 						<p>Coming Soon</p>
