@@ -7,21 +7,25 @@ import Neck from './Components/Neck';
 import NotationOption from './Components/NotationOption';
 import ShowAllNotesOption from './Components/ShowAllNotesOption';
 import RootMarkerOption from './Components/RootMarkerOption';
-import { GoSettings, GoSearch } from 'react-icons/go';
+import { GoSettings, GoSearch, GoInfo } from 'react-icons/go';
 
 function App() {
 	return (
 		<Box p='4' minW='800px'>
 			<Header />
-			<Tabs isFitted variant='enclosed' colorScheme='enclosed-colored' mt='2' >
-				<TabList>
+			<Tabs isFitted variant='enclosed' colorScheme='enclosed-colored' mt='2'>
+				<TabList gap='2'>
 					<Tab  _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
 						<GoSettings />
 						<Text ml='10px' letterSpacing='wide'>Options</Text>
 					</Tab>
-					<Tab _selected={{ color: 'white', bg: 'orange.300' }} >
+					<Tab _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
 						<GoSearch />
 						<Text ml='10px' letterSpacing='wide'>Search Song to Play</Text>
+					</Tab>
+					<Tab _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
+						<GoInfo />
+						<Text ml='10px' letterSpacing='wide'>About</Text>
 					</Tab>
 				</TabList>
 
@@ -37,6 +41,9 @@ function App() {
 								<RootMarkerOption />
 							</HStack>
 						</Flex>
+					</TabPanel>
+					<TabPanel>
+						<p>Coming Soon</p>
 					</TabPanel>
 					<TabPanel>
 						<p>Coming Soon</p>
