@@ -1,5 +1,5 @@
 import { Text, Box, Flex, HStack, Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
-import Header from './Components/Header';
+import AppHeader from './Components/Header';
 import RootNoteOption from './Components/RootNoteOption';
 import ToneOption from './Components/ToneOption';
 import ScaleTypeOption from './Components/ScaleTypeOption';
@@ -9,22 +9,23 @@ import ShowAllNotesOption from './Components/ShowAllNotesOption';
 import RootMarkerOption from './Components/RootMarkerOption';
 import { GoSettings, GoSearch, GoInfo } from 'react-icons/go';
 import SongSearch from './Components/SongSearch';
+import About from './Components/About';
 
 function App() {
 	return (
 		<Box p='4' minW='800px'>
-			<Header />
+			<AppHeader />
 			<Tabs isFitted variant='enclosed' colorScheme='enclosed-colored' mt='2'>
-				<TabList gap='2'>
-					<Tab  _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
+				<TabList gap='4'>
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
 						<GoSettings />
 						<Text ml='10px' letterSpacing='wide'>Options</Text>
 					</Tab>
-					<Tab _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
 						<GoSearch />
 						<Text ml='10px' letterSpacing='wide'>Search Song to Play</Text>
 					</Tab>
-					<Tab _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
 						<GoInfo />
 						<Text ml='10px' letterSpacing='wide'>About</Text>
 					</Tab>
@@ -47,7 +48,7 @@ function App() {
 						<SongSearch />
 					</TabPanel>
 					<TabPanel>
-						<p>Coming Soon</p>
+						<About />
 					</TabPanel>
 				</TabPanels>
 			</Tabs>
