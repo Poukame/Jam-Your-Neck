@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, Flex, Spacer, Switch, useColorMode } from '@chakra-ui/react';
 import {MdLightMode, MdModeNight } from 'react-icons/md'
-import {FaGuitar} from 'react-icons/fa'
+import { Icon } from '@iconify/react';
 
 export default function Header() {
 
@@ -10,7 +10,7 @@ export default function Header() {
 	return (
        
 		<Flex alignItems='center'  p='4'>
-			<FaGuitar size='30px'/>
+			<Icon icon="fluent-emoji-flat:guitar" width="50" height="50" />
 			<Text fontSize='3xl' fontWeight='700' ml='4'>Jam Your Neck</Text>
             <Spacer/>
 			<Flex alignItems='center' gap='4' mt='0'>
