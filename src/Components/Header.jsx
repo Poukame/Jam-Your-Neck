@@ -25,7 +25,7 @@ export default function Header() {
 	return (
 		<Flex alignItems='center' p='4'>
 			<Icon icon='fluent-emoji-flat:guitar' width='50' height='50' />
-			<Text fontSize='3xl' fontWeight='700' ml='4'>
+			<Text fontSize={{base: 'xl', md: '2xl', lg:'3xl'}} fontWeight='700' ml='4'>
 				Jam Your Neck
 			</Text>
 			<Spacer />

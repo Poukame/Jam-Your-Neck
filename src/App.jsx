@@ -43,7 +43,7 @@ function App() {
 	const { width } = useWindowDimensions();
 
 	return (
-		<Box p='4' minW='600px'>
+		<Box p='4' maxW='97%' mx='auto'>
 			<AppHeader />
 			<Tabs isFitted variant='enclosed' colorScheme='enclosed-colored' mt='2'>
 				<TabList gap='4'>
