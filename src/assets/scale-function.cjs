@@ -16,12 +16,6 @@ const stepsCalc = minPentatonic
 	})
 	.slice(1);
 
-//// USER INPUT
-// const selectedRoot = 'E';
-// const selectedTone = 'Minor' // or 'Minor'
-// const selectedMode = 'Lydian';
-// const selectedPentaDia = 'Diatonic'; // or 'Pentatonic'
-// const selectedSharpFlat = 'Sharp';
 
 function getSharpOrFlat(value) {
 	return value === 'Sharp' ? chordsSharp : chordsFlat;

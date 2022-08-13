@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { GridItem, Circle } from '@chakra-ui/react';
-import { allNeckNotes } from '../assets/AllNeckNotes';
+import { allNeckNotes } from '../assets/AllNeckNotes.cjs';
 import { nanoid } from 'nanoid';
 import { Context } from '../OptionsContext';
 

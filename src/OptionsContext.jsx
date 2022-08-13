@@ -5,7 +5,7 @@ import {
 	calcScale,
 	chordsFlat,
 	chordsSharp,
-} from '../src/assets/scale-function';
+} from './assets/scale-function.cjs';
 
 const Context = createContext();
 
