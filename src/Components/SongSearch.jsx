@@ -104,7 +104,7 @@ export default function SongSearch() {
 							key={el.id}
 							onClick={() => handleClick(event, el.id)}
 						>
-							<Flex alignItems='center' gap='4' justifyContent='center'>
+							<Flex alignItems='center' gap='4' justifyContent='center' flexWrap={{base: 'wrap', md: 'wrap', lg:'nowrap'}}>
 								{el.artist.img ? (
 									<Image src={el.artist.img} alt='Artist Cover' boxSize='80px' />
 								) : (
@@ -115,7 +115,7 @@ export default function SongSearch() {
 									<br />
 									<b>Title:</b> {el.title}
 								</Box>
-								<AddIcon mr='4' />
+								<AddIcon mr='4' display={{base: 'none', md: 'none', lg:'block'}}/>
 							</Flex>
 						</Box>
 					);

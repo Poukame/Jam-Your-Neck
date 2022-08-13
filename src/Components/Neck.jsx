@@ -20,7 +20,7 @@ export default function Neck() {
 				<NeckMarker stringNb={0} position={'bottom'} />
 			</Grid>
 			<Box>
-				<Text fontSize='2xl' fontWeight='700' mt='-10'>
+				<Text fontSize={{base: 'xl', md: '2xl', lg:'3xl'}} fontWeight='700' mt='-10'>
 					{selectedScaleType} of {selectedRootNote}
 					{selectedTone === 'Minor' ? 'm' : ''}{' '}
 				</Text>

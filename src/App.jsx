@@ -13,7 +13,7 @@ import About from './Components/About';
 
 function App() {
 	return (
-		<Box p='4' minW='800px'>
+		<Box p='4' minW='600px'>
 			<AppHeader />
 			<Tabs isFitted variant='enclosed' colorScheme='enclosed-colored' mt='2'>
 				<TabList gap='4'>
@@ -23,7 +23,7 @@ function App() {
 					</Tab>
 					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
 						<GoSearch />
-						<Text ml='10px' letterSpacing='wide'>Search Song to Play</Text>
+						<Text ml='10px' letterSpacing='wide'>Find Song Key</Text>
 					</Tab>
 					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
 						<GoInfo />
@@ -34,7 +34,7 @@ function App() {
 				<TabPanels mb='8'>
 					<TabPanel>
 						<RootNoteOption />
-						<Flex gap='8' mb='8' alignItems='flex-end' flexWrap='wrap' >
+						<Flex gap='8' rowGap={{base: '2', md: '4', lg:'8'}} mb='8' alignItems='flex-end' flexWrap='wrap' >
 							<ScaleTypeOption />
 							<ToneOption />
 							<NotationOption />

@@ -1,21 +1,24 @@
 import React from 'react';
-import { Text, HStack, Heading, Link, Container } from '@chakra-ui/react';
+import { Text, HStack, Heading, Link, Container, Box } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Icon } from '@iconify/react';
 
 export default function About() {
 	return (
 		<>
-			<Container fontSize='xl' ml='0' p='0' width='70ch'>
+			<Container fontSize='xl' ml='0' p='0' maxW='70ch'>
+			<Heading size='lg' mb='4'>
+					Why this app?
+				</Heading>
 				<Text mb='4'>
 					Hi, I'm Guillaume. I created this app because while playing on backing tracks from
 					Youtube, I was tired of searching on Google for an image of the neck with the scale of the
 					track I was playing over.
 				</Text>
-				<Text mb='4'>This app allows you to get the notes on the neck in a couple of clicks.</Text>
 				<Text mb='4'>
-					It helped me save time and play more. I hope it can help other fellow guitarists also.
-					Have fun playing scales!
+					This app allows you to get the notes on the neck in a couple of clicks. It helped me save
+					time and play more. I hope it can help other fellow guitarists as well. Have fun playing
+					scales!
 				</Text>
 				<HStack my='8'>
 					<Icon icon='akar-icons:github-fill' width='30' />
@@ -28,13 +31,25 @@ export default function About() {
 					</Link>
 				</HStack>
 				<Heading size='lg' mb='4'>
+					Limitations
+				</Heading>
+				<Text mb='4'>
+					If you use the app on your smartphone, use it in landscape mode. The guitar neck can't be
+					wrapped, I've done my best to make it useable down to 600px width, which should accommodate
+					most nowadays phones.
+				</Text>
+				<Text mb='4'>
+					When searching for a song, you might not always get the result you want. This is due to the API I use. Unfortunately, I can't sort the song by popularity.
+					If you want to find the key of a song, please use the link below to GetSongKey.
+				</Text>
+				<Heading size='lg' mb='4'>
 					Credits
 				</Heading>
 				This app is fetching the songs' data from{' '}
 				<Link href='https://getsongkey.com/' isExternal textDecoration='underline'>
 					GetSongKey.com <ExternalLinkIcon mx='2px' />
-				</Link>
-				. Thanks to them.
+				</Link>{' '}
+				API . Thanks to them.
 			</Container>
 		</>
 	);
