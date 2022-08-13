@@ -15,7 +15,8 @@ export default function NeckMarker({ stringNb, position }) {
 			return (
 				<GridItem
 					w='100%'
-					h='10'
+					h={{base: '7', md: '9', lg:'10'}}
+					fontSize={{base: '0.8rem', md: '1rem', lg:'1.1rem'}}
 					borderBottom='1px solid gray'
 					justifyContent='center'
 					key={nanoid()}
@@ -32,7 +33,7 @@ export default function NeckMarker({ stringNb, position }) {
 			return (
 				<GridItem w='100%' h='10' justifyContent='center' key={nanoid()}>
 					<Text
-						fontSize='3xl'
+						fontSize={{base: 'xl', md: '2xl', lg:'3xl'}}
 						transform='auto'
 						translateY='-30px'
 						mx='auto'
