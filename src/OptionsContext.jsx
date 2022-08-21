@@ -5,6 +5,7 @@ import {
 	calcScale,
 	chordsFlat,
 	chordsSharp,
+	stepsCalc
 } from './assets/scale-function.cjs';
 
 const Context = createContext();
@@ -170,7 +171,8 @@ function ContextProvider({ children }) {
 	const selectedTone = tone.find((el) => el.isSelected === true).tone;
 	const selectedNotation = notation.find((el) => el.isSelected === true).notation;
 	const selectedRootNote = rootNote.find((el) => el.isSelected === true).note;
-
+	const scaleIntervals = stepsCalc(getScale(selectedScaleType, selectedTone))
+  	
 	const calculatedScale = calcScale(
 		getScale(selectedScaleType, selectedTone),
 		getSharpOrFlat(selectedNotation),
@@ -197,6 +199,7 @@ function ContextProvider({ children }) {
 				selectedRootNote,
 				selectedScaleType,
 				selectedTone,
+				scaleIntervals
 			}}
 		>
 			{children}

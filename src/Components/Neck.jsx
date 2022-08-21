@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { Box, Text, Grid } from '@chakra-ui/react';
+import { Box, Text, Grid, HStack } from '@chakra-ui/react';
 import NotesPerChord from './NotesPerChord';
 import NeckMarker from './NeckMarker';
 import { Context } from '../OptionsContext';
 
 export default function Neck() {
-	const { selectedRootNote, selectedScaleType, selectedTone } = useContext(Context);
+	const { selectedRootNote, selectedScaleType, selectedTone, scaleIntervals } = useContext(Context);
 
 	return (
 		<>
@@ -19,12 +19,13 @@ export default function Neck() {
 				<NotesPerChord stringNb={5} />
 				<NeckMarker stringNb={0} position={'bottom'} />
 			</Grid>
-			<Box>
-				<Text fontSize={{base: 'xl', md: '2xl', lg:'3xl'}} fontWeight='700' mt='-10'>
+			<HStack mt='-10' gap='8' fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }} fontWeight='700'>
+				<Text>
 					{selectedScaleType} of {selectedRootNote}
-					{selectedTone === 'Minor' ? 'm' : ''}{' '}
+					{selectedTone === 'Minor' ? 'm' : ' '}
 				</Text>
-			</Box>
+				<Text color='gray.400'>Intervals: {scaleIntervals}</Text>
+			</HStack>
 		</>
 	);
 }

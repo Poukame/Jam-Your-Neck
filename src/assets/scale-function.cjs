@@ -5,17 +5,19 @@ const minScale = [0, 2, 3, 5, 7, 8, 10];
 const majPentatonic = [0, 2, 4, 7, 9]; // remove 4th and 7th
 const minPentatonic = [0, 3, 5, 7, 10]; // remove 2nd and 6th
 
-const stepsCalc = minPentatonic
-	.map((value, index, array) => {
-		if (value - (array[index - 1] || 0) === 2) {
-			return 'W';
-		} else if (value - (array[index - 1] || 0) === 3) {
-			return '1.5';
-		}
-		return 'H';
-	})
-	.slice(1);
+function stepsCalc(scaleType) {
+	const logicPenta = scaleType.every((val, index) => val === minPentatonic[index]);
+	const logicDia = scaleType.every((val, index) => val === minScale[index]);
 
+	if (scaleType.length === 5 && logicPenta) {
+		return '1.5 W W 1.5 W';
+	} else if (scaleType.length === 5 && !logicPenta) {
+		return 'W W 1.5 W 1.5';
+	} else if (scaleType.length === 7 && logicDia) {
+		return 'W H W W H W W';
+	}
+	return 'W W H W W W H';
+}
 
 function getSharpOrFlat(value) {
 	return value === 'Sharp' ? chordsSharp : chordsFlat;
@@ -42,24 +44,4 @@ function calcScale(scaleType, chordsType, rootNote) {
 	return result;
 }
 
-// calcScale(getScale(selectedPentaDia, selectedTone), chordsFlat, 'E')
-
-export { getScale, getSharpOrFlat, calcScale, chordsFlat, chordsSharp };
-
-// switch(selectedMode) {
-//     case 'Ionian':
-//     break;
-//     case 'Dorian': modeShift += 7;
-//     break;
-//     case 'Phrygian': modeShift += 2;
-//     break;
-//     case 'Lydian': modeShift += -3;
-//     break;
-//     case 'Mixolydian': modeShift += 7;
-//     break;
-//     case 'Acolian': modeShift += 7;
-//     break;
-//     case 'Locrian': modeShift += 7;
-//     break;
-//     default: modeShift += 0
-// }
+export { getScale, getSharpOrFlat, calcScale, stepsCalc, chordsFlat, chordsSharp };

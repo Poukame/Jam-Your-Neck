@@ -28,12 +28,8 @@ import SongSearch from './Components/SongSearch';
 import About from './Components/About';
 import useWindowDimensions from './assets/WindowSizeHook';
 
-
 const animationKeyframes = keyframes`
-  0% {  }
-  50% {  }
   100% { opacity: 1 }
-  25% {  }
   75% { opacity: 0 }
 `;
 
