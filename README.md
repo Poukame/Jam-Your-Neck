@@ -12,4 +12,4 @@ If you use the app on your smartphone, use it in landscape mode. The guitar neck
 When searching for a song, you might not always get the result you want. This is due to the API I use. Unfortunately, I can't sort the songs by popularity. If you want to find the key of a song, please use the link below to GetSongKey.
 
 ## Credits
-This app is fetching the songs' data from ![GetSongKey.com](https://getsongkey.com/) API . Thanks to them.
+This app is fetching the songs' data from [GetSongKey.com](https://getsongkey.com/) API . Thanks to them.
