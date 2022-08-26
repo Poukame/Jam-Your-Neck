@@ -5,14 +5,22 @@ import {
 	calcScale,
 	chordsFlat,
 	chordsSharp,
-	stepsCalc
+	stepsCalc,
+	generateRandomNotes
 } from './assets/scale-function.cjs';
 
 const Context = createContext();
 
-function ContextProvider({ children }) {
-	const [NOTES, setNOTES] = useState(chordsSharp.slice(0, 12));
 
+function ContextProvider({ children }) {
+	const [refresh, setRefresh] = useState(true);
+	
+	function handleRefresh() {
+		setRefresh(!refresh)
+	}
+
+	const [NOTES, setNOTES] = useState(chordsSharp.slice(0, 12));
+	
 	//// SHOW ALL NOTES
 
 	const [showAll, setShowAll] = useState(false);
@@ -166,6 +174,16 @@ function ContextProvider({ children }) {
 			});
 	}
 
+	/// Randomizer Options
+
+	const [nbNotes, setNbNotes] = useState(5);
+	const handleNbRndNotes = (value) => setNbNotes(value);
+
+	const [allOrCalculated, setAllOrCalculated] = useState('all');
+	
+	const [duplicateOrNot, setDuplicateOrNot] = useState('noDuplicate')
+
+	/// Final Variables
 
 	const selectedScaleType = scaleType.find((el) => el.isSelected === true).type;
 	const selectedTone = tone.find((el) => el.isSelected === true).tone;
@@ -178,6 +196,9 @@ function ContextProvider({ children }) {
 		getSharpOrFlat(selectedNotation),
 		selectedRootNote
 	);
+
+	const generatedRandomNotes = generateRandomNotes(nbNotes, allOrCalculated, duplicateOrNot, selectedNotation, calculatedScale)
+
 
 	return (
 		<Context.Provider
@@ -199,7 +220,13 @@ function ContextProvider({ children }) {
 				selectedRootNote,
 				selectedScaleType,
 				selectedTone,
-				scaleIntervals
+				scaleIntervals,
+				nbNotes,
+				handleNbRndNotes,
+				allOrCalculated, setAllOrCalculated,
+				duplicateOrNot, setDuplicateOrNot,
+				generatedRandomNotes,
+				handleRefresh
 			}}
 		>
 			{children}

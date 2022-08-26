@@ -1,3 +1,5 @@
+import shuffle from "./shuffleArray.cjs";
+
 const chordsSharp = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#','A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
 const chordsFlat =  ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab','A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab']
 const majScale = [0, 2, 4, 5, 7, 9, 11];
@@ -44,4 +46,36 @@ function calcScale(scaleType, chordsType, rootNote) {
 	return result;
 }
 
-export { getScale, getSharpOrFlat, calcScale, stepsCalc, chordsFlat, chordsSharp };
+
+function generateRandomNotes(nbNotes, allOrCalculated, duplicateOrNot, selectedNotation, calculatedScale) {
+	let array = []
+
+	if(allOrCalculated === 'all') {
+		array = (selectedNotation === 'Sharp') ? chordsSharp : chordsFlat
+	} else {
+		array = calculatedScale
+	}
+	
+	const notesArray = new Array(...array).slice(0, 12)
+
+    let result = []
+	
+	if(duplicateOrNot === 'noDuplicate') {
+		
+		for (let i = 0; i < nbNotes; i++) { 
+			shuffle(notesArray)
+			result.push(notesArray.pop())        
+		}
+	} else {
+
+		for (let i = 0; i < nbNotes; i++) { 
+			shuffle(notesArray)
+			result.push(notesArray[0])    
+		}
+	}
+
+    return result.filter(notes => notes !== undefined)
+}
+
+
+export { getScale, getSharpOrFlat, calcScale, stepsCalc, generateRandomNotes, chordsFlat, chordsSharp };
