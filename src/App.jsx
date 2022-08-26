@@ -44,27 +44,27 @@ function App() {
 		<Box p='4' maxW='97%' mx='auto'>
 			<AppHeader />
 			<Tabs isFitted variant='enclosed' colorScheme='enclosed-colored' mt='2'>
-				<TabList gap='4'>
-					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
+				<TabList gap='4' flexWrap='wrap'>
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
 						<GoSettings />
 						<Text ml='10px' letterSpacing='wide'>
 							Options
 						</Text>
 					</Tab>
-					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
 						<GoSearch />
 						<Text ml='10px' letterSpacing='wide'>
 							Find Song Key
 						</Text>
 					</Tab>
-					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
 					
 						<Icon icon="fad:random-2dice" inline={true} width="35" />
 						<Text ml='10px' letterSpacing='wide'>
 							Note Randomizer
 						</Text>
 					</Tab>
-					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
 						<GoInfo />
 						<Text ml='10px' letterSpacing='wide'>
 							About

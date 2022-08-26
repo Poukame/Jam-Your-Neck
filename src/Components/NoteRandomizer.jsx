@@ -39,9 +39,6 @@ export default function NoteRandomizer() {
 
 	return (
 		<>
-			<HStack justifyContent='center' mx='auto' gap='4' flexWrap='wrap' maxWidth='16ch' fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }} fontWeight='700' onClick={() => handleRefresh()}>
-				{generatedRandomNotesHTML}
-			</HStack>
 
 			<Flex>
 				<NumberInput
@@ -86,6 +83,9 @@ export default function NoteRandomizer() {
 				</Stack>
 			</RadioGroup>
 			<Text mt='4'><em>You can click on the random notes to generate new ones</em></Text>
+			<HStack justifyContent='center' mx='auto' mt='8' gap='4' flexWrap='wrap' maxWidth='16ch' fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }} fontWeight='700' onClick={() => handleRefresh()}>
+				{generatedRandomNotesHTML}
+			</HStack>
 		</>
 	);
 }
