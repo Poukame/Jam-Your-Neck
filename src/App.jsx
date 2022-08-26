@@ -27,6 +27,8 @@ import { GoSettings, GoSearch, GoInfo } from 'react-icons/go';
 import SongSearch from './Components/SongSearch';
 import About from './Components/About';
 import useWindowDimensions from './assets/WindowSizeHook';
+import { Icon } from '@iconify/react';
+import NoteRandomizer from './Components/NoteRandomizer';
 
 const animationKeyframes = keyframes`
   100% { opacity: 1 }
@@ -53,6 +55,13 @@ function App() {
 						<GoSearch />
 						<Text ml='10px' letterSpacing='wide'>
 							Find Song Key
+						</Text>
+					</Tab>
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
+					
+						<Icon icon="fad:random-2dice" inline={true} width="35" />
+						<Text ml='10px' letterSpacing='wide'>
+							Note Randomizer
 						</Text>
 					</Tab>
 					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100'>
@@ -84,6 +93,9 @@ function App() {
 					</TabPanel>
 					<TabPanel>
 						<SongSearch />
+					</TabPanel>
+					<TabPanel>
+						<NoteRandomizer />
 					</TabPanel>
 					<TabPanel>
 						<About />
