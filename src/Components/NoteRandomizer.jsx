@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Context } from '../OptionsContext';
+import Metronome from './Metronome';
 import {
+	Button,
 	Text,
 	Flex,
 	HStack,
@@ -18,8 +20,11 @@ import {
 	Stack,
 } from '@chakra-ui/react';
 
-
 export default function NoteRandomizer() {
+
+	// const audio = new Audio(click)
+	// audio.play()
+
 	const {
 		nbNotes,
 		handleNbRndNotes,
@@ -32,14 +37,11 @@ export default function NoteRandomizer() {
 	} = useContext(Context);
 
 	const generatedRandomNotesHTML = generatedRandomNotes.map((el, index) => {
-		return (
-			<span key={index}>{el}</span>
-		)
-	})
+		return <span key={index}>{el}</span>;
+	});
 
 	return (
 		<>
-
 			<Flex>
 				<NumberInput
 					maxW='100px'
@@ -82,10 +84,23 @@ export default function NoteRandomizer() {
 					<Radio value='allowDuplicate'>Allow duplicate notes</Radio>
 				</Stack>
 			</RadioGroup>
-			<Text mt='4'><em>You can click on the random notes to generate new ones</em></Text>
-			<HStack justifyContent='center' mx='auto' mt='8' gap='4' flexWrap='wrap' maxWidth='16ch' fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }} fontWeight='700' onClick={() => handleRefresh()}>
+			<Text mt='4'>
+				<em>You can click on the random notes to generate new ones</em>
+			</Text>
+			<HStack
+				justifyContent='center'
+				mx='auto'
+				mt='8'
+				gap='4'
+				flexWrap='wrap'
+				maxWidth='16ch'
+				fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}
+				fontWeight='700'
+				onClick={() => handleRefresh()}
+			>
 				{generatedRandomNotesHTML}
 			</HStack>
+			<Metronome />
 		</>
 	);
 }

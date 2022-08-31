@@ -1,4 +1,6 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useRef } from 'react';
+import click1 from './assets/click1.wav';
+import click2 from './assets/click2.wav'
 import {
 	getScale,
 	getSharpOrFlat,
@@ -183,6 +185,31 @@ function ContextProvider({ children }) {
 	
 	const [duplicateOrNot, setDuplicateOrNot] = useState('noDuplicate')
 
+	/// Metronome option
+
+	const clickA = new Audio(click1)
+	const clickB = new Audio(click2)
+	let timerID = useRef()
+	
+	const [bpm, setBpm] = useState(90)
+	const [isPlaying, setIsPlaying] = useState(false)
+	
+	function handleBPM(value) {
+		if(isPlaying) {
+			clearInterval(timerID.current)
+			timerID.current = setInterval(() => clickA.play(), (60 / bpm) * 1000)
+			
+			setBpm(value)
+		} else {
+			setBpm(value)}
+		}
+
+	function togglePlay() {
+		clearInterval(timerID.current)
+		setIsPlaying(!isPlaying);
+	}
+	
+
 	/// Final Variables
 
 	const selectedScaleType = scaleType.find((el) => el.isSelected === true).type;
@@ -226,7 +253,8 @@ function ContextProvider({ children }) {
 				allOrCalculated, setAllOrCalculated,
 				duplicateOrNot, setDuplicateOrNot,
 				generatedRandomNotes,
-				handleRefresh
+				handleRefresh,handleBPM, bpm,
+				 isPlaying, setIsPlaying, togglePlay
 			}}
 		>
 			{children}
