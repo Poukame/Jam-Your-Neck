@@ -1,8 +1,7 @@
 import React, {useContext} from 'react'
 import { Context } from '../OptionsContext'
 import { Box, Button } from '@chakra-ui/react';
-import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
-
+import { Icon } from '@iconify/react';
 
 export default function RootMarkerOption() {
 
@@ -12,7 +11,7 @@ export default function RootMarkerOption() {
     return (
         <Box>
             <Button 
-            leftIcon={showRootMarker ? <AiFillEyeInvisible/> : <AiFillEye color='red' />}
+            leftIcon={showRootMarker ? <Icon icon="ant-design:eye-invisible-filled" /> : <Icon icon="ant-design:eye-filled" color='red' />}
             colorScheme='blue'
             letterSpacing='wide'
             variant='outline'

@@ -1,4 +1,6 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useRef } from 'react';
+import click1 from './assets/media/click1.wav';
+import click2 from './assets/media/click2.wav';
 import {
 	getScale,
 	getSharpOrFlat,
@@ -6,21 +8,20 @@ import {
 	chordsFlat,
 	chordsSharp,
 	stepsCalc,
-	generateRandomNotes
+	generateRandomNotes,
 } from './assets/scale-function.cjs';
 
 const Context = createContext();
 
-
 function ContextProvider({ children }) {
 	const [refresh, setRefresh] = useState(true);
-	
+
 	function handleRefresh() {
-		setRefresh(!refresh)
+		setRefresh(!refresh);
 	}
 
 	const [NOTES, setNOTES] = useState(chordsSharp.slice(0, 12));
-	
+
 	//// SHOW ALL NOTES
 
 	const [showAll, setShowAll] = useState(false);
@@ -180,8 +181,51 @@ function ContextProvider({ children }) {
 	const handleNbRndNotes = (value) => setNbNotes(value);
 
 	const [allOrCalculated, setAllOrCalculated] = useState('all');
-	
-	const [duplicateOrNot, setDuplicateOrNot] = useState('noDuplicate')
+
+	const [duplicateOrNot, setDuplicateOrNot] = useState('noDuplicate');
+
+	/// Metronome option
+
+	const clickA = new Audio(click1);
+	const clickB = new Audio(click2);
+	const timerID = useRef();
+
+	const [bpm, setBpm] = useState(90);
+	const [isPlaying, setIsPlaying] = useState(false);
+
+	let count = 0;
+	let beatsPerMeasure = 4;
+
+	function handleBPM(value) {
+		if (isPlaying) {
+			clearInterval(timerID.current);
+			timerID.current = setInterval(playClicks, (60 / bpm) * 1000);
+			count = 0;
+			setBpm(value);
+		} else {
+			setBpm(value);
+		}
+	}
+
+	function togglePlay() {
+		if (isPlaying) {
+			clearInterval(timerID.current);
+			setIsPlaying(false);
+		} else {
+			setIsPlaying(true);
+			timerID.current = setInterval(playClicks, (60 / bpm) * 1000);
+		}
+	}
+
+	function playClicks() {
+		if (count === 0) {
+			clickB.play();
+		} else {
+			clickA.play();
+		}
+
+		count = (count + 1) % beatsPerMeasure;
+	}
 
 	/// Final Variables
 
@@ -189,16 +233,21 @@ function ContextProvider({ children }) {
 	const selectedTone = tone.find((el) => el.isSelected === true).tone;
 	const selectedNotation = notation.find((el) => el.isSelected === true).notation;
 	const selectedRootNote = rootNote.find((el) => el.isSelected === true).note;
-	const scaleIntervals = stepsCalc(getScale(selectedScaleType, selectedTone))
-  	
+	const scaleIntervals = stepsCalc(getScale(selectedScaleType, selectedTone));
+
 	const calculatedScale = calcScale(
 		getScale(selectedScaleType, selectedTone),
 		getSharpOrFlat(selectedNotation),
 		selectedRootNote
 	);
 
-	const generatedRandomNotes = generateRandomNotes(nbNotes, allOrCalculated, duplicateOrNot, selectedNotation, calculatedScale)
-
+	const generatedRandomNotes = generateRandomNotes(
+		nbNotes,
+		allOrCalculated,
+		duplicateOrNot,
+		selectedNotation,
+		calculatedScale
+	);
 
 	return (
 		<Context.Provider
@@ -223,10 +272,17 @@ function ContextProvider({ children }) {
 				scaleIntervals,
 				nbNotes,
 				handleNbRndNotes,
-				allOrCalculated, setAllOrCalculated,
-				duplicateOrNot, setDuplicateOrNot,
+				allOrCalculated,
+				setAllOrCalculated,
+				duplicateOrNot,
+				setDuplicateOrNot,
 				generatedRandomNotes,
-				handleRefresh
+				handleRefresh,
+				handleBPM,
+				bpm,
+				isPlaying,
+				setIsPlaying,
+				togglePlay,
 			}}
 		>
 			{children}

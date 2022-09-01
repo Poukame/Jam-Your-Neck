@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import {
 	Text,
 	Box,
@@ -23,12 +24,12 @@ import Neck from './Components/Neck';
 import NotationOption from './Components/NotationOption';
 import ShowAllNotesOption from './Components/ShowAllNotesOption';
 import RootMarkerOption from './Components/RootMarkerOption';
-import { GoSettings, GoSearch, GoInfo } from 'react-icons/go';
 import SongSearch from './Components/SongSearch';
 import About from './Components/About';
 import useWindowDimensions from './assets/WindowSizeHook';
-import { Icon } from '@iconify/react';
 import NoteRandomizer from './Components/NoteRandomizer';
+import Metronome from './Components/Metronome';
+import { Icon } from '@iconify/react';
 
 const animationKeyframes = keyframes`
   100% { opacity: 1 }
@@ -39,33 +40,42 @@ const animation = `${animationKeyframes} 2s infinite both;`;
 
 function App() {
 	const { width } = useWindowDimensions();
+	const [tabIndex, setTabIndex] = useState(0)
 
 	return (
 		<Box p='4' maxW='97%' mx='auto'>
-			<AppHeader />
-			<Tabs isFitted variant='enclosed' colorScheme='enclosed-colored' mt='2'>
+			<AppHeader windowWidth={width} />
+			<Tabs isFitted variant='enclosed' colorScheme='enclosed-colored' mt='2' onChange={(index) => setTabIndex(index)}>
 				<TabList gap='4' flexWrap='wrap'>
-					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
-						<GoSettings />
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap' >
+					<Icon icon="akar-icons:settings-vertical" inline={true} />
 						<Text ml='10px' letterSpacing='wide'>
 							Options
 						</Text>
 					</Tab>
-					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
-						<GoSearch />
-						<Text ml='10px' letterSpacing='wide'>
-							Find Song Key
-						</Text>
-					</Tab>
-					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
+
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap' alignItems='flex-end' >
 					
 						<Icon icon="fad:random-2dice" inline={true} width="35" />
 						<Text ml='10px' letterSpacing='wide'>
 							Note Randomizer
 						</Text>
 					</Tab>
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap' alignItems='flex-end'>
+					
+					<Icon icon="fad:metronome" inline={true} width="30" />
+					<Text ml='10px' letterSpacing='wide'>
+						Metronome
+					</Text>
+				</Tab>
+				<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
+				<Icon icon="ant-design:search-outlined" inline={true} width='25'/>
+						<Text ml='10px' letterSpacing='wide'>
+							Find Song Key
+						</Text>
+					</Tab>
 					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
-						<GoInfo />
+					<Icon icon="akar-icons:info" inline={true} />
 						<Text ml='10px' letterSpacing='wide'>
 							About
 						</Text>
@@ -92,10 +102,13 @@ function App() {
 						</Flex>
 					</TabPanel>
 					<TabPanel>
-						<SongSearch />
+						<NoteRandomizer />
 					</TabPanel>
 					<TabPanel>
-						<NoteRandomizer />
+						<Metronome />
+					</TabPanel>
+					<TabPanel>
+						<SongSearch />
 					</TabPanel>
 					<TabPanel>
 						<About />
@@ -104,7 +117,7 @@ function App() {
 			</Tabs>
 			<Flex direction='column' gap='6'>
 				{width > 600 ? (
-					<Neck />
+					(tabIndex !== 3) && (tabIndex !== 4) && <Neck />
 				) : (
 					<Alert status='error' >
 						<AlertIcon as={motion.div} animation={animation}/>

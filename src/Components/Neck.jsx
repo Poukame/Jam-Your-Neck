@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Box, Text, Grid, HStack } from '@chakra-ui/react';
+import { Text, Grid, HStack } from '@chakra-ui/react';
 import NotesPerChord from './NotesPerChord';
 import NeckMarker from './NeckMarker';
 import { Context } from '../OptionsContext';
