@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { Context } from '../OptionsContext';
-import Metronome from './Metronome';
+import StartMetronomeBtn from './StartMetronomeBtn';
 import {
-	Button,
 	Text,
 	Flex,
 	HStack,
+	VStack,
 	Slider,
 	SliderFilledTrack,
 	SliderTrack,
@@ -20,11 +20,7 @@ import {
 	Stack,
 } from '@chakra-ui/react';
 
-export default function NoteRandomizer() {
-
-	// const audio = new Audio(click)
-	// audio.play()
-
+function NoteRandomizer() {
 	const {
 		nbNotes,
 		handleNbRndNotes,
@@ -87,20 +83,24 @@ export default function NoteRandomizer() {
 			<Text mt='4'>
 				<em>You can click on the random notes to generate new ones</em>
 			</Text>
-			<HStack
-				justifyContent='center'
-				mx='auto'
-				mt='8'
-				gap='4'
-				flexWrap='wrap'
-				maxWidth='16ch'
-				fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}
-				fontWeight='700'
-				onClick={() => handleRefresh()}
-			>
-				{generatedRandomNotesHTML}
-			</HStack>
-			<Metronome />
+			<VStack mb='-10'>
+				<StartMetronomeBtn />
+				<HStack
+					justifyContent='center'
+					mx='auto'
+					mt='8'
+					gap='4'
+					flexWrap='wrap'
+					maxWidth='16ch'
+					fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}
+					fontWeight='700'
+					onClick={() => handleRefresh()}
+					>
+					{generatedRandomNotesHTML}
+				</HStack>
+			</VStack>
 		</>
 	);
 }
+
+export default NoteRandomizer;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, HStack, Heading, Link, Container, Box } from '@chakra-ui/react';
+import { Text, HStack, Heading, Link, Container } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Icon } from '@iconify/react';
 

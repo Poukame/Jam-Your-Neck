@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import {
 	Text,
 	Box,
@@ -29,6 +30,7 @@ import About from './Components/About';
 import useWindowDimensions from './assets/WindowSizeHook';
 import { Icon } from '@iconify/react';
 import NoteRandomizer from './Components/NoteRandomizer';
+import Metronome from './Components/Metronome';
 
 const animationKeyframes = keyframes`
   100% { opacity: 1 }
@@ -39,29 +41,38 @@ const animation = `${animationKeyframes} 2s infinite both;`;
 
 function App() {
 	const { width } = useWindowDimensions();
+	const [tabIndex, setTabIndex] = useState(0)
 
 	return (
 		<Box p='4' maxW='97%' mx='auto'>
 			<AppHeader />
-			<Tabs isFitted variant='enclosed' colorScheme='enclosed-colored' mt='2'>
+			<Tabs isFitted variant='enclosed' colorScheme='enclosed-colored' mt='2' onChange={(index) => setTabIndex(index)}>
 				<TabList gap='4' flexWrap='wrap'>
-					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap' >
 						<GoSettings />
 						<Text ml='10px' letterSpacing='wide'>
 							Options
 						</Text>
 					</Tab>
-					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
-						<GoSearch />
-						<Text ml='10px' letterSpacing='wide'>
-							Find Song Key
-						</Text>
-					</Tab>
-					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
+
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap' alignItems='flex-end' >
 					
 						<Icon icon="fad:random-2dice" inline={true} width="35" />
 						<Text ml='10px' letterSpacing='wide'>
 							Note Randomizer
+						</Text>
+					</Tab>
+					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap' alignItems='flex-end'>
+					
+					<Icon icon="fad:metronome" inline={true} width="35" />
+					<Text ml='10px' letterSpacing='wide'>
+						Metronome
+					</Text>
+				</Tab>
+				<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
+						<GoSearch />
+						<Text ml='10px' letterSpacing='wide'>
+							Find Song Key
 						</Text>
 					</Tab>
 					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
@@ -92,10 +103,13 @@ function App() {
 						</Flex>
 					</TabPanel>
 					<TabPanel>
-						<SongSearch />
+						<NoteRandomizer />
 					</TabPanel>
 					<TabPanel>
-						<NoteRandomizer />
+						<Metronome />
+					</TabPanel>
+					<TabPanel>
+						<SongSearch />
 					</TabPanel>
 					<TabPanel>
 						<About />
@@ -104,7 +118,7 @@ function App() {
 			</Tabs>
 			<Flex direction='column' gap='6'>
 				{width > 600 ? (
-					<Neck />
+					(tabIndex !== 3) && (tabIndex !== 4) && <Neck />
 				) : (
 					<Alert status='error' >
 						<AlertIcon as={motion.div} animation={animation}/>

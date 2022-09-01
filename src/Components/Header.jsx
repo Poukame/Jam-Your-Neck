@@ -32,7 +32,8 @@ export default function Header() {
 			<Flex alignItems='center' gap='4' mt='0'>
 				<Tooltip
 					hasArrow
-					label='This will install this app on your computer or phone and it will behave just like a regular app in its own window.'
+					label={`This will install this app on your computer or phone and it will behave just like a regular app in its own window.
+					You can also click on your browser's menu and click on "Install Jam Your Neck"`}
 					bg='blue.400'
 				>
 					<Button mr='8' onClick={() => installApp()}>
