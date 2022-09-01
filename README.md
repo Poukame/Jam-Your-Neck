@@ -12,6 +12,10 @@ Try it online: [Jam Your Neck](https://jamyourneck.netlify.app/)
 - The app is installable on any device (PWA). This means you will have an icon just like a regular app and be able to access it offline. It will also display in a window that feels like a native app.
 - Dark mode
 
+## Screenshot and GIF
+
+![Screenshot](./src/assets/media/screenshot.webp)
+![GIF](./src/assets/media/animated.webp)
 ## Why this app?
 Hi, I'm Guillaume. I created this app because while playing on backing tracks from YouTube, I was tired of searching on Google for an image of the neck with the scale of the track I was playing over.
 

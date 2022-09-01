@@ -24,13 +24,12 @@ import Neck from './Components/Neck';
 import NotationOption from './Components/NotationOption';
 import ShowAllNotesOption from './Components/ShowAllNotesOption';
 import RootMarkerOption from './Components/RootMarkerOption';
-import { GoSettings, GoSearch, GoInfo } from 'react-icons/go';
 import SongSearch from './Components/SongSearch';
 import About from './Components/About';
 import useWindowDimensions from './assets/WindowSizeHook';
-import { Icon } from '@iconify/react';
 import NoteRandomizer from './Components/NoteRandomizer';
 import Metronome from './Components/Metronome';
+import { Icon } from '@iconify/react';
 
 const animationKeyframes = keyframes`
   100% { opacity: 1 }
@@ -45,11 +44,11 @@ function App() {
 
 	return (
 		<Box p='4' maxW='97%' mx='auto'>
-			<AppHeader />
+			<AppHeader windowWidth={width} />
 			<Tabs isFitted variant='enclosed' colorScheme='enclosed-colored' mt='2' onChange={(index) => setTabIndex(index)}>
 				<TabList gap='4' flexWrap='wrap'>
 					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap' >
-						<GoSettings />
+					<Icon icon="akar-icons:settings-vertical" inline={true} />
 						<Text ml='10px' letterSpacing='wide'>
 							Options
 						</Text>
@@ -64,19 +63,19 @@ function App() {
 					</Tab>
 					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap' alignItems='flex-end'>
 					
-					<Icon icon="fad:metronome" inline={true} width="35" />
+					<Icon icon="fad:metronome" inline={true} width="30" />
 					<Text ml='10px' letterSpacing='wide'>
 						Metronome
 					</Text>
 				</Tab>
 				<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
-						<GoSearch />
+				<Icon icon="ant-design:search-outlined" inline={true} width='25'/>
 						<Text ml='10px' letterSpacing='wide'>
 							Find Song Key
 						</Text>
 					</Tab>
 					<Tab color='black' _selected={{ color: 'white', bg: 'orange.300' }} bg='orange.100' flexWrap='wrap'>
-						<GoInfo />
+					<Icon icon="akar-icons:info" inline={true} />
 						<Text ml='10px' letterSpacing='wide'>
 							About
 						</Text>

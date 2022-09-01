@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useRef } from 'react';
-import click1 from './assets/click1.wav';
-import click2 from './assets/click2.wav';
+import click1 from './assets/media/click1.wav';
+import click2 from './assets/media/click2.wav';
 import {
 	getScale,
 	getSharpOrFlat,
