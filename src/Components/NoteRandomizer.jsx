@@ -87,6 +87,7 @@ function NoteRandomizer() {
 				<StartMetronomeBtn />
 				<HStack
 					justifyContent='center'
+					_hover={{cursor:'pointer'}}
 					mx='auto'
 					mt='8'
 					gap='4'
