@@ -218,14 +218,8 @@ function ContextProvider({ children }) {
 	}
 
 	function playClicks() {
-		if (count === 0) {
-			clickB.play();
-			clickB.currentTime = 0; // fix smartphone sound delay  
-		} else {
-			clickA.play();
-			clickA.currentTime = 0 // fix smartphone sound delay 		
-		}
-
+		
+		clickA.play();
 		count = (count + 1) % beatsPerMeasure;
 	}
 
