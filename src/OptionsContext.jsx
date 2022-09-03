@@ -220,18 +220,16 @@ function ContextProvider({ children }) {
 	function playClicks() {
 		if (count === 0) {
 			clickB.currentTime = 0;
-			clickB.muted = false
 			clickB.play();
 			setTimeout(() => {
-				clickB.muted = true
-			}, 200);
+				clickB.pause()
+			}, 100);
 		} else {
 			clickA.currentTime = 0;
-			clickA.muted = false
 			clickA.play();
 			setTimeout(() => {
-				clickA.muted = true
-			}, 200);
+				clickA.pause()	
+			}, 100);
 		}
 		count = (count + 1) % beatsPerMeasure;
 	}
