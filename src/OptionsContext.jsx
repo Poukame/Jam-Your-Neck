@@ -186,16 +186,14 @@ function ContextProvider({ children }) {
 
 	/// Metronome option
 
-	const clickA = new Audio(click1);
-	const clickB = new Audio(click2);
 	const timerID = useRef();
-
+	
 	const [bpm, setBpm] = useState(90);
 	const [isPlaying, setIsPlaying] = useState(false);
-
+	
 	let count = 0;
 	let beatsPerMeasure = 4;
-
+	
 	function handleBPM(value) {
 		if (isPlaying) {
 			clearInterval(timerID.current);
@@ -206,7 +204,7 @@ function ContextProvider({ children }) {
 			setBpm(value);
 		}
 	}
-
+	
 	function togglePlay() {
 		if (isPlaying) {
 			clearInterval(timerID.current);
@@ -216,8 +214,10 @@ function ContextProvider({ children }) {
 			timerID.current = setInterval(playClicks, (60 / bpm) * 1000);
 		}
 	}
-
+	
 	function playClicks() {
+		const clickA = new Audio(click1);
+		const clickB = new Audio(click2);
 		if (count === 0) {
 			clickB.currentTime = 0;
 			clickB.play();
