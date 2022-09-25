@@ -19,6 +19,7 @@ import {
 	RadioGroup,
 	Stack,
 } from '@chakra-ui/react';
+import { calculatedOrAll, duplicateOrNot } from '../types';
 
 function NoteRandomizer() {
 	const {
@@ -45,7 +46,7 @@ function NoteRandomizer() {
 					min={2}
 					max={12}
 					value={nbNotes}
-					onChange={(value) => handleNbRndNotes(value)}
+					onChange={(value) => handleNbRndNotes(+value)}
 				>
 					<NumberInputField />
 					<NumberInputStepper>
@@ -68,13 +69,13 @@ function NoteRandomizer() {
 				</Slider>
 			</Flex>
 
-			<RadioGroup onChange={(value) => setAllOrCalculated(value)} value={allOrCalculated} mt='4'>
+			<RadioGroup onChange={(value:calculatedOrAll) => setAllOrCalculated(value)} value={allOrCalculated} mt='4'>
 				<Stack direction='row'>
 					<Radio value='all'>Use all notes</Radio>
 					<Radio value='calculated'>Use notes from your generated scale</Radio>
 				</Stack>
 			</RadioGroup>
-			<RadioGroup onChange={(value) => setDuplicateOrNot(value)} value={duplicateOrNot} mt='4'>
+			<RadioGroup onChange={(value:duplicateOrNot) => setDuplicateOrNot(value)} value={duplicateOrNot} mt='4'>
 				<Stack direction='row'>
 					<Radio value='noDuplicate'>No duplicate note</Radio>
 					<Radio value='allowDuplicate'>Allow duplicate notes</Radio>

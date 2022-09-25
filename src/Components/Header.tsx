@@ -1,12 +1,12 @@
-import React from 'react';
 import { Text, Flex, Spacer, Switch, useColorMode, Button, Tooltip } from '@chakra-ui/react';
 import { MdLightMode, MdModeNight } from 'react-icons/md';
 import { Icon } from '@iconify/react';
+import {IPropsHeader} from '../types'
 
-export default function Header({ windowWidth }) {
+export default function Header({ windowWidth }:IPropsHeader) {
 	const { colorMode, toggleColorMode } = useColorMode();
 
-	let deferredPrompt;
+	let deferredPrompt:any ;
 
 	window.addEventListener('beforeinstallprompt', (e) => {
 		deferredPrompt = e;

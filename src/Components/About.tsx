@@ -42,6 +42,9 @@ export default function About() {
 					When searching for a song, you might not always get the result you want. This is due to the API I use. Unfortunately, I can't sort the songs by popularity.
 					If you want to find the key of a song, please use the link below to GetSongKey.
 				</Text>
+				<Text mb='4'>
+					On smartphone the metronone doesn't work properly. I have no idea why 🤷. If you happen to know please contact me.
+				</Text>
 				<Heading size='lg' mb='4'>
 					Credits
 				</Heading>
