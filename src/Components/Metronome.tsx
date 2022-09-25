@@ -17,6 +17,10 @@ import {
 function Metronome() {
 	const { bpm, handleBPM } = useContext(Context);
 
+	function parse(value:string): number {
+		return +value.replace(/^BPM/,'')
+	}
+
 	return (
 		<>
         <Flex>
@@ -29,7 +33,7 @@ function Metronome() {
 				min={20}
 				max={190}
 				value={`${bpm} BPM`}
-				onChange={(value) => handleBPM(value)}
+				onChange={(value) => handleBPM(parse(value))}
                 >
 				<NumberInputField />
 				<NumberInputStepper>

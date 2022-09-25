@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { GridItem, Circle } from '@chakra-ui/react';
-import { allNeckNotes } from '../assets/AllNeckNotes.cjs';
+import { allNeckNotes } from '../assets/AllNeckNotes';
 import { nanoid } from 'nanoid';
 import { Context } from '../OptionsContext';
+import {IPropsNotePerChord} from '../types'
 
-export default function NotesPerChord({ stringNb }) {
+export default function NotesPerChord({ stringNb }:IPropsNotePerChord) {
 	const { calculatedScale, selectedNotation, showAll, showRootMarker } = useContext(Context);
 	
 	const sharpOrFlatScale =

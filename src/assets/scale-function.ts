@@ -1,4 +1,5 @@
-import shuffle from "./shuffleArray.cjs";
+import { notation, tone, rootNote, scaleType } from '../types';
+import shuffle from "./shuffleArray";
 
 const chordsSharp = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#','A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
 const chordsFlat =  ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab','A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab']
@@ -7,7 +8,7 @@ const minScale = [0, 2, 3, 5, 7, 8, 10];
 const majPentatonic = [0, 2, 4, 7, 9]; // remove 4th and 7th
 const minPentatonic = [0, 3, 5, 7, 10]; // remove 2nd and 6th
 
-function stepsCalc(scaleType) {
+function stepsCalc(scaleType:number[]): string {
 	const logicPenta = scaleType.every((val, index) => val === minPentatonic[index]);
 	const logicDia = scaleType.every((val, index) => val === minScale[index]);
 
@@ -21,11 +22,11 @@ function stepsCalc(scaleType) {
 	return 'W W H W W W H';
 }
 
-function getSharpOrFlat(value) {
+function getSharpOrFlat(value:notation):string[] {
 	return value === 'Sharp' ? chordsSharp : chordsFlat;
 }
 
-function getScale(scale, tone) {
+function getScale(scale:scaleType, tone:tone): number[] {
 	if (scale === 'Diatonic') {
 		if (tone === 'Major') {
 			return majScale;
@@ -37,9 +38,9 @@ function getScale(scale, tone) {
 	return minPentatonic;
 }
 
-function calcScale(scaleType, chordsType, rootNote) {
+function calcScale(scaleType:number[], chordsType:string[], rootNote:rootNote):string[] {
 	const startNb = chordsType.indexOf(rootNote);
-	const result = [];
+	const result:string[] = [];
 	scaleType.forEach((interval) => {
 		result.push(chordsType[startNb + interval]);
 	});
@@ -47,7 +48,7 @@ function calcScale(scaleType, chordsType, rootNote) {
 }
 
 
-function generateRandomNotes(nbNotes, allOrCalculated, duplicateOrNot, selectedNotation, calculatedScale) {
+function generateRandomNotes(nbNotes:number, allOrCalculated:string, duplicateOrNot:string, selectedNotation:notation, calculatedScale:string[]) {
 	let array = []
 
 	if(allOrCalculated === 'all') {

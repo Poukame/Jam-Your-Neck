@@ -19,9 +19,9 @@ import { Icon } from '@iconify/react';
 export default function SongSearch() {
 	const key = import.meta.env.VITE_SONG_KEY_URI;
 
-	const [songResult, setSongResult] = useState(null);
-	const [songResultHTML, setSongResultHTML] = useState(null);
-	const [searchQuery, setSearchQuery] = useState(null);
+	const [songResult, setSongResult] = useState<any>([]);
+	const [songResultHTML, setSongResultHTML] = useState<any>([]);
+	const [searchQuery, setSearchQuery] = useState('');
 	const [isError, setIsError] = useState(false);
 	const [toggleSearch, setToggleSearch] = useState(false);
 	const [isWaiting, setIsWaiting] = useState(false);
@@ -35,65 +35,72 @@ export default function SongSearch() {
 	});
 
 	const { title, artist, BPM, rootKey, searchString } = displayRoot;
-	const handleChange = (event) => setSearchQuery(event.target.value);
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+		setSearchQuery(event.target.value);
 
-
-	function handleSubmit(event) {
+	function handleSubmit(event: React.BaseSyntheticEvent): void {
 		event.preventDefault();
 
-		if (searchQuery.trim() !== '' && searchQuery !== null && searchQuery !== '' && !(/^[\W]+/gi).test(searchQuery)) {
+		if (
+			searchQuery !== null &&
+			searchQuery !== '' &&
+			searchQuery.trim() !== '' &&
+			!/^[\W]+/gi.test(searchQuery)
+		) {
 			setDisplayRoot({ ...displayRoot, display: false });
 			setToggleSearch(!toggleSearch);
 		}
 	}
 
-	function handleClick(event, ID) {
-		event.preventDefault;
+	function handleClick(e: React.BaseSyntheticEvent, ID: string): void {
+		e.preventDefault;
 		fetchRootKey(ID);
 	}
 
-	async function fetchRootKey(ID) {
+	async function fetchRootKey(ID: string) {
 		setIsError(false);
-		try {
-			const url = `https://api.getsongbpm.com/song/?api_key=${key}&id=${ID}`;
-			const res = await fetch(url);
-			const data = await res.json();
-			setDisplayRoot({
-				display: true,
-				rootKey: data.song.key_of,
-				BPM: data.song.tempo,
-				artist: data.song.artist.name,
-				title: data.song.title,
-				searchString: (data.song.artist.name + ' ' + data.song.title).replaceAll(' ', '+'),
-			});
-		} catch (error) {
-			setIsError(true);
-		}
+		if (searchQuery !== '')
+			try {
+				const url = `https://api.getsongbpm.com/song/?api_key=${key}&id=${ID}`;
+				const res = await fetch(url);
+				const data = await res.json();
+				setDisplayRoot({
+					display: true,
+					rootKey: data.song.key_of,
+					BPM: data.song.tempo,
+					artist: data.song.artist.name,
+					title: data.song.title,
+					searchString: (data.song.artist.name + ' ' + data.song.title).replaceAll(' ', '+'),
+				});
+			} catch (error) {
+				setIsError(true);
+			}
 	}
 
 	useEffect(() => {
-		async function fetchSong() {
-			if (searchQuery.length > 0 || searchQuery !== null)
-			setIsError(false);
-			setIsWaiting(true);
-			try {
-				const url = `https://api.getsongbpm.com/search/?api_key=${key}&limit=12&type=song&lookup=${searchQuery}`;
-				const res = await fetch(url);
-				const data = await res.json();
-				setSongResult(data.search);
-				setIsWaiting(false);
-			} catch (error) {
-				setIsWaiting(false);
-				setIsError(true);
+		if (searchQuery !== '') {
+			async function fetchSong() {
+				if (searchQuery.length > 0 || searchQuery !== null) setIsError(false);
+				setIsWaiting(true);
+				try {
+					const url = `https://api.getsongbpm.com/search/?api_key=${key}&limit=12&type=song&lookup=${searchQuery}`;
+					const res = await fetch(url);
+					const data = await res.json();
+					setSongResult(data.search);
+					setIsWaiting(false);
+				} catch (error) {
+					setIsWaiting(false);
+					setIsError(true);
+				}
 			}
+			fetchSong();
 		}
-		fetchSong();
 	}, [toggleSearch]);
 
 	useEffect(() => {
-		if (songResult !== null && songResult.length > 0) {
+		if (songResult && songResult.length > 0) {
 			setSongResultHTML(
-				songResult.map((el) => {
+				songResult.map((el: any) => {
 					return (
 						<Box
 							cursor='pointer'
@@ -102,9 +109,14 @@ export default function SongSearch() {
 							borderColor='orange.200'
 							overflow='hidden'
 							key={el.id}
-							onClick={() => handleClick(event, el.id)}
+							onClick={(e: React.BaseSyntheticEvent) => handleClick(e, el.id)}
 						>
-							<Flex alignItems='center' gap='4' justifyContent='center' flexWrap={{base: 'wrap', md: 'wrap', lg:'nowrap'}}>
+							<Flex
+								alignItems='center'
+								gap='4'
+								justifyContent='center'
+								flexWrap={{ base: 'wrap', md: 'wrap', lg: 'nowrap' }}
+							>
 								{el.artist.img ? (
 									<Image src={el.artist.img} alt='Artist Cover' boxSize='80px' />
 								) : (
@@ -115,7 +127,7 @@ export default function SongSearch() {
 									<br />
 									<b>Title:</b> {el.title}
 								</Box>
-								<AddIcon mr='4' display={{base: 'none', md: 'none', lg:'block'}}/>
+								<AddIcon mr='4' display={{ base: 'none', md: 'none', lg: 'block' }} />
 							</Flex>
 						</Box>
 					);
@@ -162,7 +174,14 @@ export default function SongSearch() {
 						bottom='0'
 						width='fit-content'
 						height='100%'
-						children={<Button isDisabled={searchQuery !== '' && searchQuery !== null  ? false : true} onClick={(e) => handleSubmit(e)}>Search</Button>}
+						children={
+							<Button
+								isDisabled={searchQuery !== '' && searchQuery !== null ? false : true}
+								onClick={(e) => handleSubmit(e)}
+							>
+								Search
+							</Button>
+						}
 					/>
 				</InputGroup>
 			</form>
@@ -173,7 +192,7 @@ export default function SongSearch() {
 			)}
 			{displayRoot.display && rootKeyandSearchHTML}
 
-			<SimpleGrid columns='3' spacing='4'>
+			<SimpleGrid columns={3} spacing='4'>
 				{isWaiting ? (
 					<Spinner thickness='4px' speed='0.65s' emptyColor='gray.200' color='blue.500' size='xl' />
 				) : (

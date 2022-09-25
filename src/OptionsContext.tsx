@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useRef } from 'react';
+import React, { createContext, useState, useEffect, useRef, Dispatch, SetStateAction } from 'react';
 import click1 from './assets/media/click1.mp3';
 import click2 from './assets/media/click2.mp3';
 import {
@@ -9,11 +9,46 @@ import {
 	chordsSharp,
 	stepsCalc,
 	generateRandomNotes,
-} from './assets/scale-function.cjs';
+} from './assets/scale-function.js';
+import { notation, tone, rootNote, scaleType, calculatedOrAll, duplicateOrNot, WithChildren } from './types';
 
-const Context = createContext();
+const initialValue = {
+	rootNote: [{ note: 'C', isSelected: true }],
+	handleClickRootNote: (note: string, isSelected: boolean) => {},
+	scaleType: [{ type: 'Pentatonic', isSelected: true }],
+	handleClickScaleType: (type: string, isSelected: boolean) => {},
+	tone: [{ tone: 'Minor', isSelected: true }],
+	handleClickTone: (tone: string, isSelected: boolean) => {},
+	calculatedScale: [''],
+	notation: [{ notation: '', isSelected: true }],
+	handleClickNotation: (notation: string, isSelected: boolean) => {},
+	selectedNotation: '' as notation,
+	handleClickShowAllNotes: () => {},
+	showAll: false,
+	showRootMarker: true,
+	handleClickRootMarker: () => {},
+	selectedRootNote: '' as rootNote,
+	selectedScaleType: '' as scaleType,
+	selectedTone: '' as tone,
+	scaleIntervals: '',
+	nbNotes: 5,
+	handleNbRndNotes: (value: number) => {},
+	allOrCalculated: '',
+	setAllOrCalculated: (() => {}) as Dispatch<SetStateAction<calculatedOrAll>>,
+	duplicateOrNot: '',
+	setDuplicateOrNot: (() => {}) as Dispatch<SetStateAction<duplicateOrNot>>,
+	generatedRandomNotes: [''],
+	handleRefresh: () => {},
+	handleBPM: (value: number) => {},
+	bpm: 0,
+	isPlaying: false,
+	setIsPlaying: (() => {}) as Dispatch<SetStateAction<boolean>>,
+	togglePlay: () => {},
+};
 
-function ContextProvider({ children }) {
+const Context = createContext(initialValue);
+
+function ContextProvider({ children }: WithChildren) {
 	const [refresh, setRefresh] = useState(true);
 
 	function handleRefresh() {
@@ -52,7 +87,7 @@ function ContextProvider({ children }) {
 	];
 	const [notation, setNotation] = useState(initialNotation);
 
-	function handleClickNotation(notation, isSelected) {
+	function handleClickNotation(notation: string, isSelected: boolean) {
 		!isSelected &&
 			setNotation((el) => {
 				return el.map((el) => {
@@ -96,7 +131,7 @@ function ContextProvider({ children }) {
 
 	const [rootNote, setRootNote] = useState(initialStateRootNote);
 
-	function handleClickRootNote(note, isSelected) {
+	function handleClickRootNote(note: string, isSelected: boolean): void {
 		!isSelected &&
 			setRootNote((el) => {
 				return el.map((el) => {
@@ -127,7 +162,7 @@ function ContextProvider({ children }) {
 	];
 	const [scaleType, setScaleType] = useState(initialStateScaleType);
 
-	function handleClickScaleType(type, isSelected) {
+	function handleClickScaleType(type: string, isSelected: boolean) {
 		!isSelected &&
 			setScaleType((el) => {
 				return el.map((el) => {
@@ -158,7 +193,7 @@ function ContextProvider({ children }) {
 	];
 	const [tone, setTone] = useState(initialStateTone);
 
-	function handleClickTone(tone, isSelected) {
+	function handleClickTone(tone: string, isSelected: boolean) {
 		!isSelected &&
 			setTone((el) => {
 				return el.map((el) => {
@@ -178,23 +213,23 @@ function ContextProvider({ children }) {
 	/// Randomizer Options
 
 	const [nbNotes, setNbNotes] = useState(5);
-	const handleNbRndNotes = (value) => setNbNotes(value);
+	const handleNbRndNotes = (value: number) => setNbNotes(value);
 
-	const [allOrCalculated, setAllOrCalculated] = useState('all');
+	const [allOrCalculated, setAllOrCalculated] = useState<calculatedOrAll>('all');
 
-	const [duplicateOrNot, setDuplicateOrNot] = useState('noDuplicate');
+	const [duplicateOrNot, setDuplicateOrNot] = useState<duplicateOrNot>('noDuplicate');
 
 	/// Metronome option
 
-	const timerID = useRef();
-	
+	const timerID = useRef<NodeJS.Timer>();
+
 	const [bpm, setBpm] = useState(90);
 	const [isPlaying, setIsPlaying] = useState(false);
-	
+
 	let count = 0;
 	let beatsPerMeasure = 4;
-	
-	function handleBPM(value) {
+
+	function handleBPM(value: number) {
 		if (isPlaying) {
 			clearInterval(timerID.current);
 			timerID.current = setInterval(playClicks, (60 / bpm) * 1000);
@@ -204,7 +239,7 @@ function ContextProvider({ children }) {
 			setBpm(value);
 		}
 	}
-	
+
 	function togglePlay() {
 		if (isPlaying) {
 			clearInterval(timerID.current);
@@ -214,7 +249,7 @@ function ContextProvider({ children }) {
 			timerID.current = setInterval(playClicks, (60 / bpm) * 1000);
 		}
 	}
-	
+
 	function playClicks() {
 		const clickA = new Audio(click1);
 		const clickB = new Audio(click2);
@@ -222,13 +257,13 @@ function ContextProvider({ children }) {
 			clickB.currentTime = 0;
 			clickB.play();
 			setTimeout(() => {
-				clickB.pause()
+				clickB.pause();
 			}, 100);
 		} else {
 			clickA.currentTime = 0;
 			clickA.play();
 			setTimeout(() => {
-				clickA.pause()	
+				clickA.pause();
 			}, 100);
 		}
 		count = (count + 1) % beatsPerMeasure;
@@ -236,10 +271,10 @@ function ContextProvider({ children }) {
 
 	/// Final Variables
 
-	const selectedScaleType = scaleType.find((el) => el.isSelected === true).type;
-	const selectedTone = tone.find((el) => el.isSelected === true).tone;
-	const selectedNotation = notation.find((el) => el.isSelected === true).notation;
-	const selectedRootNote = rootNote.find((el) => el.isSelected === true).note;
+	const selectedScaleType = scaleType.find((el) => el.isSelected === true)?.type as scaleType;
+	const selectedTone = tone.find((el) => el.isSelected === true)?.tone as tone;
+	const selectedNotation = notation.find((el) => el.isSelected === true)?.notation as notation;
+	const selectedRootNote = rootNote.find((el) => el.isSelected === true)?.note as rootNote;
 	const scaleIntervals = stepsCalc(getScale(selectedScaleType, selectedTone));
 
 	const calculatedScale = calcScale(
@@ -254,7 +289,7 @@ function ContextProvider({ children }) {
 		duplicateOrNot,
 		selectedNotation,
 		calculatedScale
-	);
+	) as string[];
 
 	return (
 		<Context.Provider
