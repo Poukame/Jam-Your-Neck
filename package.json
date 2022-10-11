@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest",
+    "testUI": "vitest --ui",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.6",
@@ -22,12 +25,19 @@
     "react-scripts": "^5.0.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@vitest/coverage-c8": "^0.23.4",
+    "@vitest/ui": "^0.23.4",
+    "vitest": "^0.23.4",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
     "vite-plugin-pwa": "^0.12.3",
-    "@iconify/react": "^3.2.2"
+    "@iconify/react": "^3.2.2",
+    "nth-check": ">=2.0.1"
   }
 }
