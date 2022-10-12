@@ -1,3 +1,4 @@
+// @ts-nocheck
 import About from '../src/Components/About';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
