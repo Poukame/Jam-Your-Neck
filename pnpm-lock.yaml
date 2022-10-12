@@ -17,6 +17,7 @@ specifiers:
   '@vitest/ui': ^0.23.4
   dotenv: ^16.0.1
   framer-motion: ^6.5.1
+  nanoid: ^4.0.0
   nth-check: '>=2.0.1'
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -35,6 +36,7 @@ dependencies:
   '@fontsource/nunito': 4.5.10
   dotenv: 16.0.2
   framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
+  nanoid: 4.0.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.4.0_react@18.2.0
@@ -8263,6 +8265,12 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /nanoid/4.0.0:
+    resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
+    engines: {node: ^14 || ^16 || >=18}
+    hasBin: true
+    dev: false
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
