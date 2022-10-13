@@ -21,10 +21,6 @@ describe('when the user click the toggle', () => {
 		);
 	});
 	
-	afterEach(() => {
-		cleanup();
-	});
-	
 	test('the theme should toggle between dark and light', async () => {
 		const toggleBtn = screen.getByRole('checkbox');
 		expect(toggleBtn).not.toBeChecked()
