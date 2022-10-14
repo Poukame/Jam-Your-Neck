@@ -55,7 +55,7 @@ function Metronome() {
 					<SliderThumb fontSize='sm' boxSize='32px' children={bpm} />
 				</Slider>
                 </Flex>
-            <StartMetronomeBtn />
+				<StartMetronomeBtn />
 		</>
 	);
 }
