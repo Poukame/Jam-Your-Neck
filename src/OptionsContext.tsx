@@ -221,7 +221,7 @@ function ContextProvider({ children }: WithChildren) {
 
 	/// Metronome option
 
-	const timerID = useRef<NodeJS.Timer>();
+	const timerID:any = useRef<NodeJS.Timer>();
 
 	const [bpm, setBpm] = useState(90);
 	const [isPlaying, setIsPlaying] = useState(false);
