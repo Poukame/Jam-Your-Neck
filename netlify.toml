@@ -1,7 +1,3 @@
-[build.environment]
-  NPM_FLAGS = "--prefix=/dev/null"
-  NODE_VERSION = "21"
-
 [build]
   publish = "dist"
   command = "npx pnpm i --store=node_modules/.pnpm-store && npx pnpm run build"
