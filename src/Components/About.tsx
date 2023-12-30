@@ -20,7 +20,7 @@ export default function About() {
 				</Text>
 				<Text mb='4' fontWeight='bold'>
 					Latest Update: when you install the PWA, your screen won't lock or go into screen saver mode as long as the
-					app is open. This means you can play with your sceen locking!
+					app is open. This means you can play without your screen locking!
 				</Text>
 				<HStack my='8'>
 					<Icon icon='akar-icons:github-fill' width='30' />
